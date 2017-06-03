@@ -3,199 +3,118 @@ html {
 }
 
 body {
-  background: url("../images/background-interior.png") no-repeat left top #9cd9f4;
+  /*background: url("../images/background-interior.png") no-repeat left top #9cd9f4;
   background-size: contain;
-  color: #333;
-  font-family: "Segoe UI", Arial;
-}
-
-body > .container {
-  /*padding-top: 60px;*/
-}
-
-h1.logo {
-  padding: 0;
-  margin: 3px 0 0 0;
-  width: 168px;
-}
-
-h2 {
-  margin: 50px 0 25px 0;
-  font-weight: bold;
-  font-size: 1.8em;
-  text-transform: uppercase;
-  text-shadow: 0 0 4px rgba(0,0,0,0.4);
-  color: white;
-}
-
-h3 {
-  margin-top: 50px;
-  color: #333;
-  text-shadow: 0 1px 3px white;
-}
-
-h4 {
-  margin-top: 25px;
-  color: #02577c;
-}
-
-.navbar-default .navbar-nav>li>a {
-  color: #02577c;
-}
-
-.navbar-default .navbar-nav>li>a:hover {
-  color: #02577c;
-}
-
-.page-header {
-    border: none;
-}
-
-.page-header h1 {
-    font-family: Arial;
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 1px 1px #000;
-}
-
-p>a {
-  color: #00aeef;
-  text-decoration: underline;
-}
-
-p>a:hover {
-  text-decoration: none;
-}
-
-.navbar-default {
-  background: url("../images/background-interior.png") no-repeat left top #9cd9f4;
-  background-size: cover;
-  border: none;
-}
-
-.nav>li>a:active {
-  background-color: transparent;
-}
-
-.nav>li>a:hover {
-  background-color: #00aeef;
-  color: #fff;
-}
-
-.nav>li.active a,
-.nav>li.active a:hover,
-.nav>li.active a:focus,
-.nav>li.active a:active {
-  background-color: #00aeef;
-  color: #fff;
-}
-
-.navbar-shadow {
-  -webkit-box-shadow: 0 15px 15px -15px rgba(0,0,0,0.50);
-  -moz-box-shadow: 0 15px 15px -15px rgba(0,0,0,0.50);
-  box-shadow: 0 15px 15px -15px rgba(0,0,0,0.50);
-}
-
-.navbar-right {
-  margin-top: 15px;
-}
-
-#client-portal {
-  color: #f26b30;
-  font-weight: bold;
-}
-
-#client-portal:hover {
-  text-decoration: underline;
-  background-color: transparent;
-}
-
-#content {
-  margin-top: 25px;
-}
-
-.footer {
-    /*position: absolute;
-    bottom: 0;
-    width: 100%;*/
-    margin-top: 75px;
-    font-size: .8em;
-    color: #02577c;
-}
-
-.footer .container {
-  padding-top: 50px;
-  border-top: 1px solid #fff;
-}
-
-#splash .footer .container {
-  padding-top: 50px;
-  border: none;
-}
-
-
-/* -- Splash -- */
-#splash {
-  background: url("../images/background.png") no-repeat top;
-  background-size: cover;
-}
-
-h2.splash-content-heading {
+  color: #333;*/
   font-family: Arial;
-  font-size: 2em;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 1px 1px #000;
 }
 
-/* -- About Us -- */
-figcaption,
-figcaption a {
-  color: #333;
-  font-style: italic;
-  text-align: center;
-  text-decoration: underline;
-}
-
-figcaption a:hover {
+.logo {
+  display: block;
   text-decoration: none;
+  width: 158px;
+  height: 68px;
+  margin: 30px 0 0 50px;
+  position: absolute;
 }
 
-.headshot {
-  margin-right: 15px;
-}
-
-.about-advisor-list {
-  list-style-type: none;
-}
-
-.experience {
-  font-weight: bold;
-  color: #f36733;
-  font-size: 1.8em;
-  text-shadow: 1px 0 1px #333;
-}
-
-/* -- Products & Services -- */
-table,
-.table>thead>tr>th,
-.table>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th {
-  border-color: #fff;
-}
-
-/* -- Contact -- */
-#success_message{
+.logo span {
   display: none;
 }
 
-.well {
-  background: transparent;
-  border: none;
-  box-shadow: none;
+/* -- Main menu -- */
+
+
+/* -- Content -- */
+.main-content {
+  padding: 175px 50px 50px 50px;
+  font-size: 2.3em;
+  line-height: 1.5em;
+}
+
+.main-content h2 {
+  font-size: .7em;
+  margin-top: 50px;
+}
+
+.opacity-container {
+  width: 50%;
+  float: left;
+}
+
+.opacity-content {
+  display: block;
+  width: 100%;
+  height: 278px;
+  text-decoration: none;
+  filter: grayscale(100%);
+  opacity: 1;
+  transition: opacity .5s linear;
+  color: #fff;
+  font-size: 1.3em;
+}
+
+.opacity-content:hover {
+  opacity: 0;
+  text-decoration: none;
+  color: #fff;
+}
+
+.measure-what-counts,
+.measure-what-counts-container {
+  background: url(../images/measure-what-counts.png) no-repeat;
+  background-size: cover;
+}
+
+.get-into-the-mud,
+.get-into-the-mud-container {
+  background: url(../images/get-into-the-mud.png) no-repeat;
+  background-size: cover;
+}
+
+.moons-and-marbles,
+.moons-and-marbles-container {
+  background: url(../images/moons-and-marbles.png) no-repeat;
+  background-size: cover;
+}
+
+.love-this-thing,
+.love-this-thing-container {
+  background: url(../images/love-this-thing.png) no-repeat;
+  background-size: cover;
+}
+
+/* -- Footer -- */
+
+footer {
+  color: #595959;
+  font-size: 1.4em;
+}
+
+footer .nav>li>a {
+  padding: 0 25px 0 0;
+  color: #595959;
+  font-weight: normal;
+}
+
+footer .nav>li>a:focus,
+footer .nav>li>a:hover {
+  background-color: transparent;
+}
+
+footer .nav-pills>li>a {
+  border-radius: 0;
+}
+
+footer h2 {
+  background-color: #EDEDED;
+  text-align: center;
+  font: normal 1.6em;
+  padding: 45px 0;
+}
+
+footer h2>.btn-default {
+  background-color: #404040;
+  color: #BF8F02;
+  margin-left: 2em;
 }

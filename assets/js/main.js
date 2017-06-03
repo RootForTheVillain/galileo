@@ -26,16 +26,16 @@ function bindRouterLinks() {
 function loadPartial(href) {
   href = href.toLowerCase();
   switch (href) {
-    case '#about-6metre-financial':
-    case '#360-degree-planning':
-    case '#products-and-services':
-    case '#contact':
+    case '#measure-what-counts':
+    case '#get-into-the-mud':
+    case '#moons-and-marbles':
+    case '#love-this-thing':
       href = href.replace('#', '');
-      $('body').removeAttr('id');
+      //$('body').removeAttr('id');
     break;
     default:
       href = 'home';
-      $('body').attr('id', 'splash');
+      //$('body').attr('id', 'splash');
     break;
   }
 
@@ -72,7 +72,7 @@ function setActiveMenuItem(hash) {
   });
 }
 
-function dateDiff(date1, date2) {
+/*function dateDiff(date1, date2) {
   var msInAYear = 31536000000;
   return Math.floor(Math.abs(date1 - date2) / msInAYear);
-}
+}*/
