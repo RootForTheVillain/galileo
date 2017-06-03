@@ -151,9 +151,51 @@ body {
   padding: 125px 50px 50px 50px;
 }
 
+.portfolio-image {
+  float: left;
+  margin: 0 35px 35px 0;
+  border: 1px solid #666;
+  -webkit-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
+  -moz-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
+  box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
+}
+
 .love-this-thing-content {
   background: url(../images/love-this-thing-page.png) no-repeat;
   min-height: 750px;
+}
+
+.state-of-mi-content {
+  background: url(../images/our-work-state-of-mi.jpg) no-repeat;
+  min-height: 750px;
+}
+
+figcaption {
+  font-size: 1.5em;
+  font-style: italic;
+  padding-top: 25px;
+  color: #666;
+}
+
+figcaption h3 {
+  font-style: normal;
+  color: #333;
+}
+
+.next-link {
+  color: #444;
+  font-size: .7em;
+  margin-top: 50px;
+  display: block;
+}
+
+.next-link span {
+  color: #BF8F02;
+}
+
+.next-link:hover {
+  color: #BF8F02;
+  text-decoration: none;
 }
 
 .btn-back {

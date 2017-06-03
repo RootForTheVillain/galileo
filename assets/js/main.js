@@ -1,13 +1,3 @@
-/*$(window).scroll(function() {
-    var scroll = $(window).scrollTop();
-    if (scroll > 0) {
-        $('#navbar').addClass("navbar-shadow");
-    }
-    else {
-        $('#navbar').removeClass("navbar-shadow");
-    }
-});*/
-
 $(document).ready(function() {
     var $menu = $('.main-menu-container');
 
@@ -21,7 +11,7 @@ $(document).ready(function() {
 
     loadPartial(window.location.hash);
     bindRouterLinks();
-    setActiveMenuItem(window.location.hash);
+    //setActiveMenuItem(window.location.hash);
 });
 
 function bindRouterLinks() {
@@ -35,7 +25,6 @@ function bindRouterLinks() {
 
   $('.btn-back').click(function(e) {
     e.stopPropagation();
-    console.log(window.history)
     window.history.back();
   });
 }
@@ -54,6 +43,8 @@ function loadPartial(href) {
     case '#get-into-the-mud':
     case '#moons-and-marbles':
     case '#love-this-thing':
+    case '#state-of-mi':
+    case '#motown-redefined':
       href = href.replace('#', '');
       //$('body').removeAttr('id');
     break;
@@ -65,7 +56,7 @@ function loadPartial(href) {
 
   $('[data-include]').load(href + '.html', function() {
     bindRouterLinks();
-    initPage(href);
+    //initPage(href);
   });
 }
 
@@ -73,18 +64,13 @@ function initPage(href) {
   switch (href.toLowerCase()) {
     case 'about-6metre-financial':
 
-      var today = new Date();
-      $('.financial-advisor-experience').text(dateDiff(today, new Date('4/1/2008')));
-      $('.lending-experience').text(dateDiff(today, new Date('4/1/2015')));
-      $('.training-experience').text(dateDiff(today, new Date('4/1/2012')));
-
     break;
   }
 
-  setActiveMenuItem(window.location.hash);
+  //setActiveMenuItem(window.location.hash);
 }
 
-function setActiveMenuItem(hash) {
+/*function setActiveMenuItem(hash) {
   $('.navbar-right li').each(function() {
     var href = $(this).find('a.router-link').attr('href');
 
@@ -94,9 +80,4 @@ function setActiveMenuItem(hash) {
       $(this).removeClass('active')
     }
   });
-}
-
-/*function dateDiff(date1, date2) {
-  var msInAYear = 31536000000;
-  return Math.floor(Math.abs(date1 - date2) / msInAYear);
 }*/
