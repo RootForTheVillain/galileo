@@ -53,9 +53,35 @@
 
 <body>
 <div class="container-fluid">
-  <a href="#home" class="logo">
-    <img src="assets/images/logo.png" width="" height="" alt="Galileo Insights">
-  </a>
+
+  <div class="container-fluid main-menu-container">
+    <ul id="main-menu" class="nav navbar-nav navbar-right">
+      <li><a href="#home" class="router-link">Home</a></li>
+      <li><a href="#what-we-do" class="router-link">What We Do</a></li>
+      <li><a href="#our-work" class="router-link">Our Work</a></li>
+      <li><a href="#headlines" class="router-link">Headlines</a></li>
+      <li><a href="#about-us" class="router-link">About Us</a></li>
+      <li><a href="#contact-us" class="router-link">Contact Us</a></li>
+    </ul>
+  </div>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button id="hamburger" type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand router-link" href="#home">
+          <img src="assets/images/logo.png" width="" height="" alt="Galileo Insights">
+        </a>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+
   <div data-include="content"></div>
 </div>
 

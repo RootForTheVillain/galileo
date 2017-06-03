@@ -9,7 +9,15 @@
 });*/
 
 $(document).ready(function() {
+    var $menu = $('.main-menu-container');
+
+    $menu.hide();
     $('#copyright-date').text(new Date().getFullYear());
+
+    $('#hamburger').click(function(e) {
+      e.stopPropagation();
+      $menu.slideToggle('slow');
+    });
 
     loadPartial(window.location.hash);
     bindRouterLinks();
@@ -18,14 +26,30 @@ $(document).ready(function() {
 
 function bindRouterLinks() {
   $('.router-link').off('click').click(function(e) {
+    var href = $(this).attr('href');/*,
+      route = (typeof href != 'undefined') ? href : $(this).attr('data-target');*/
+
     e.stopPropagation();
-    loadPartial($(this).attr('href'));
+    loadPartial(href);
+  });
+
+  $('.btn-back').click(function(e) {
+    e.stopPropagation();
+    console.log(window.history)
+    window.history.back();
   });
 }
 
 function loadPartial(href) {
+  $('.main-menu-container').slideUp('fast');
+
   href = href.toLowerCase();
   switch (href) {
+    case '#what-we-do':
+    case '#our-work':
+    case '#headlines':
+    case '#about-us':
+    case '#contact-us':
     case '#measure-what-counts':
     case '#get-into-the-mud':
     case '#moons-and-marbles':
