@@ -9,6 +9,8 @@ $(document).ready(function() {
       $menu.slideToggle('slow');
     });
 
+    $('#footer-menu').append($menu.find('li'));
+
     loadPartial(window.location.hash);
     bindRouterLinks();
     //setActiveMenuItem(window.location.hash);
@@ -38,12 +40,16 @@ function loadPartial(href) {
     case '#our-work':
     case '#headlines':
     case '#about-us':
+    case '#about-us-2':
     case '#contact-us':
     case '#measure-what-counts':
     case '#get-into-the-mud':
     case '#moons-and-marbles':
     case '#love-this-thing':
     case '#state-of-mi':
+    case '#state-of-mi-1':
+    case '#state-of-mi-2':
+    case '#state-of-mi-3':
     case '#motown-redefined':
       href = href.replace('#', '');
       //$('body').removeAttr('id');

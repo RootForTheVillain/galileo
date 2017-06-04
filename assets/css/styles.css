@@ -7,6 +7,7 @@ body {
   /*background: url("../images/background-interior.png") no-repeat left top #9cd9f4;
   background-size: contain;
   color: #333;*/
+  background-color: #fff;
   font-family: "Segoe UI", Arial;
   height: 100%;
 }
@@ -124,32 +125,59 @@ body {
 
 .measure-what-counts,
 .measure-what-counts-container {
-  background: url(../images/measure-what-counts.png) no-repeat;
+  background: url(../images/measure-what-counts.jpg) no-repeat;
   background-size: cover;
 }
 
 .get-into-the-mud,
 .get-into-the-mud-container {
-  background: url(../images/get-into-the-mud.png) no-repeat;
+  background: url(../images/get-into-the-mud.jpg) no-repeat;
   background-size: cover;
 }
 
 .moons-and-marbles,
 .moons-and-marbles-container {
-  background: url(../images/moons-and-marbles.png) no-repeat;
+  background: url(../images/moons-and-marbles.jpg) no-repeat;
   background-size: cover;
 }
 
 .love-this-thing,
 .love-this-thing-container {
-  background: url(../images/love-this-thing.png) no-repeat;
+  background: url(../images/love-this-thing.jpg) no-repeat;
   background-size: cover;
 }
 
 /* -- Interior pages -- */
-.interior-content {
-  padding: 125px 50px 50px 50px;
+.interior-heading {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1.6em;
+  margin-bottom: 35px;
 }
+
+.xl-text {
+  font-size: 2.8em;
+}
+
+.lg-text {
+  font-size: 2em;
+}
+
+.col-lg-padding {
+  padding: 200px 50px 50px 50px;
+}
+
+.col-md-padding {
+  padding: 150px 50px 50px 50px;
+}
+
+.col-sm-padding {
+  padding: 100px 50px 50px 50px;
+}
+
+/*.interior-content {
+  padding: 125px 50px 50px 50px;
+}*/
 
 .portfolio-image {
   float: left;
@@ -170,6 +198,18 @@ body {
   min-height: 750px;
 }
 
+.about-us-background {
+  background: url(../images/lute.jpg) no-repeat;
+  background-size: cover;
+  min-height: 600px;
+}
+
+.about-us-1-background {
+  background: url(../images/galileo.jpg) no-repeat;
+  background-size: cover;
+  min-height: 610px;
+}
+
 figcaption {
   font-size: 1.5em;
   font-style: italic;
@@ -184,7 +224,6 @@ figcaption h3 {
 
 .next-link {
   color: #444;
-  font-size: .7em;
   margin-top: 50px;
   display: block;
 }
@@ -196,6 +235,10 @@ figcaption h3 {
 .next-link:hover {
   color: #BF8F02;
   text-decoration: none;
+}
+
+.current-page {
+  margin-top: 50px;
 }
 
 .btn-back {
@@ -214,17 +257,20 @@ figcaption h3 {
 footer {
   color: #595959;
   font-size: 1.4em;
+  background-color: #fff;
 }
 
 footer .nav>li>a {
-  padding: 0 25px 0 0;
+  padding: 10px;
   color: #595959;
   font-weight: normal;
+  border-top: 5px solid #fff;
 }
 
 footer .nav>li>a:focus,
 footer .nav>li>a:hover {
   background-color: transparent;
+  border-color: #BF8F02;
 }
 
 footer .nav-pills>li>a {
@@ -236,7 +282,7 @@ footer h2 {
   text-align: center;
   font: normal 1.6em;
   padding: 45px 0;
-  margin-top: 0;
+  margin: 0;
 }
 
 footer h2>.btn-default {
