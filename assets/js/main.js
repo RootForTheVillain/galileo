@@ -9,11 +9,11 @@ $(document).ready(function() {
       $menu.slideToggle('slow');
     });
 
-    $('#footer-menu').append($menu.find('li'));
+    $menu.find('li').clone().appendTo('#footer-menu');
 
     loadPartial(window.location.hash);
     bindRouterLinks();
-    //setActiveMenuItem(window.location.hash);
+    setActiveMenuItem(window.location.hash);
 });
 
 function bindRouterLinks() {
@@ -28,6 +28,7 @@ function bindRouterLinks() {
   $('.btn-back').click(function(e) {
     e.stopPropagation();
     window.history.back();
+    console.log(window.history.back())
   });
 }
 
@@ -37,6 +38,7 @@ function loadPartial(href) {
   href = href.toLowerCase();
   switch (href) {
     case '#what-we-do':
+    case '#what-we-do-2':
     case '#our-work':
     case '#headlines':
     case '#about-us':
@@ -73,11 +75,11 @@ function initPage(href) {
     break;
   }
 
-  //setActiveMenuItem(window.location.hash);
+  setActiveMenuItem(window.location.hash);
 }
 
-/*function setActiveMenuItem(hash) {
-  $('.navbar-right li').each(function() {
+function setActiveMenuItem(hash) {
+  $('#footer-menu li').each(function() {
     var href = $(this).find('a.router-link').attr('href');
 
     if (href !== undefined && href.toLowerCase() == hash.toLowerCase()) {
@@ -86,4 +88,4 @@ function initPage(href) {
       $(this).removeClass('active')
     }
   });
-}*/
+}

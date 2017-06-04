@@ -19,7 +19,7 @@ body {
 
 /* -- Main menu -- */
 .main-menu-container {
-  background: url(../images/menu-background.png) no-repeat left #fff;
+  background: url(../images/old-detroit-background.jpg) no-repeat left #fff;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -162,22 +162,30 @@ body {
 
 .xl-text {
   font-size: 2.8em;
+  margin: 25px 0;
 }
 
 .lg-text {
   font-size: 2em;
+  margin: 25px 0;
+}
+
+.md-text {
+  font-size: 1.5em;
+  margin: 25px 0;
 }
 
 .col-lg-padding {
-  padding: 200px 50px 50px 50px;
+  padding-top: 200px;
 }
 
 .col-md-padding {
-  padding: 150px 50px 50px 50px;
+  /*padding: 150px 50px 50px 50px;*/
+  padding-top: 150px;
 }
 
 .col-sm-padding {
-  padding: 100px 50px 50px 50px;
+  padding-top: 100px;
 }
 
 /*.interior-content {
@@ -215,6 +223,12 @@ body {
   min-height: 610px;
 }
 
+.old-detroit-background {
+  background: url(../images/old-detroit-background.jpg) no-repeat;
+  background-size: cover;
+  min-height: 610px;
+}
+
 figcaption {
   font-size: 1.5em;
   font-style: italic;
@@ -235,7 +249,8 @@ figcaption h3 {
 }
 
 .next-link {
-  color: #444;
+  /*color: #444;*/
+  color: #BF8F02;
   margin-top: 50px;
   display: block;
 }
@@ -245,8 +260,16 @@ figcaption h3 {
 }
 
 .next-link:hover {
+  /*color: #444;*/
   color: #BF8F02;
   text-decoration: none;
+}
+
+.next-link:hover span {
+  /*color: #444;*/
+  color: #444;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .current-page {
@@ -264,6 +287,11 @@ figcaption h3 {
   color: #BF8F02;
 }
 
+.gallery img {
+  float: left;
+  margin: 25px;
+}
+
 /* -- Footer -- */
 
 footer {
@@ -279,10 +307,14 @@ footer .nav>li>a {
   border-top: 5px solid #fff;
 }
 
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover,
 footer .nav>li>a:focus,
 footer .nav>li>a:hover {
   background-color: transparent;
   border-color: #BF8F02;
+  color: #595959;
 }
 
 footer .nav-pills>li>a {
