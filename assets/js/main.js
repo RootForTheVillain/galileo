@@ -67,7 +67,6 @@ function loadPartial(href) {
   href = href.toLowerCase();
   switch (href) {
     case '#what-we-do':
-    case '#what-we-do-2':
     case '#our-work':
     case '#headlines':
     case '#about-us':
