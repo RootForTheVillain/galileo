@@ -25,25 +25,23 @@ app = {
   }
 };
 
-/*$(window).scroll(function() {
-    var scroll = $(window).scrollTop();
-    if (scroll > 0) {
-        $('#navbar').addClass("navbar-shadow");
-    }
-    else {
-        $('#navbar').removeClass("navbar-shadow");
-    }
-});*/
-
 $(document).ready(function() {
-    var $menu = $('.main-menu-container');
-
+    var $menu = $('#main-menu-container');
     $menu.hide();
+
     $('#copyright-date').text(new Date().getFullYear());
 
     $('#hamburger').click(function(e) {
+      var delay = 100;
       e.stopPropagation();
-      $menu.slideToggle('slow');
+
+      $menu.slideToggle(500, function() { $menu.animate({backgroundPosition: '0px'}); }).find('li').each(function() {
+        delay += 100;
+        var $this = $(this);
+        setTimeout(function() {
+          $this.animate({left: '0px'}, 'fast');
+        }, delay);
+      });
     });
 
     $menu.find('li').clone().appendTo('#footer-menu');
@@ -55,8 +53,7 @@ $(document).ready(function() {
 
 function bindRouterLinks() {
   $('.router-link').off('click').click(function(e) {
-    var href = $(this).attr('href');/*,
-      route = (typeof href != 'undefined') ? href : $(this).attr('data-target');*/
+    var href = $(this).attr('href');
     e.stopPropagation();
     loadPartial(href);
   });
@@ -98,35 +95,23 @@ function loadPartial(href) {
   }
 
   $('[data-include]').load(href + '.html', function() {
-    app.history.add('#' + href);
+    var hash = '#' + href;
+    app.history.add(hash);
     bindRouterLinks();
-    //initPage(href);
-    //$('#page-container').addClass(href);
+    setActiveMenuItem(hash);
     $('html, body').animate({ scrollTop: 0 }, 'fast');
   });
 }
 
-function initPage(href) {
-  switch (href.toLowerCase()) {
-    case 'about-6metre-financial':
-
-    break;
-  }
-
-  setActiveMenuItem(window.location.hash);
-}
-
 function setActiveMenuItem(hash) {
   $('#footer-menu li').each(function() {
-    var $self = $(this),
-        href = $self.find('a.router-link').attr('href');
+    var $this = $(this),
+        href = $this.find('a.router-link').attr('href');
 
-    $self.removeClass('active');
-
-    console.log($self.text(), href)
+    $this.removeClass('active');
 
     if (href !== undefined && href.toLowerCase() == hash.toLowerCase()) {
-      $self.addClass('active');
+      $this.addClass('active');
     }
   });
 }
