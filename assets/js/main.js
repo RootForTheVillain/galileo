@@ -25,6 +25,16 @@ app = {
   }
 };
 
+/*$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    if (scroll > 0) {
+        $('#navbar').addClass("navbar-shadow");
+    }
+    else {
+        $('#navbar').removeClass("navbar-shadow");
+    }
+});*/
+
 $(document).ready(function() {
     var $menu = $('.main-menu-container');
 
@@ -70,9 +80,7 @@ function loadPartial(href) {
     case '#our-work':
     case '#headlines':
     case '#about-us':
-    case '#about-us-2':
     case '#contact-us':
-    case '#contact-us-2':
     case '#measure-what-counts':
     case '#get-into-the-mud':
     case '#moons-and-marbles':
@@ -83,11 +91,9 @@ function loadPartial(href) {
     case '#state-of-mi-3':
     case '#motown-redefined':
       href = href.replace('#', '');
-      //$('body').removeAttr('id');
     break;
     default:
       href = 'home';
-      //$('body').attr('id', 'splash');
     break;
   }
 
@@ -95,6 +101,8 @@ function loadPartial(href) {
     app.history.add('#' + href);
     bindRouterLinks();
     //initPage(href);
+    //$('#page-container').addClass(href);
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
   });
 }
 
@@ -110,12 +118,15 @@ function initPage(href) {
 
 function setActiveMenuItem(hash) {
   $('#footer-menu li').each(function() {
-    var href = $(this).find('a.router-link').attr('href');
+    var $self = $(this),
+        href = $self.find('a.router-link').attr('href');
+
+    $self.removeClass('active');
+
+    console.log($self.text(), href)
 
     if (href !== undefined && href.toLowerCase() == hash.toLowerCase()) {
-      $(this).addClass('active');
-    } else {
-      $(this).removeClass('active')
+      $self.addClass('active');
     }
   });
 }

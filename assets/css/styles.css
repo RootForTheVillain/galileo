@@ -1,6 +1,6 @@
 html {
   min-height: 100%;
-  position:relative;
+  position: relative;
 }
 
 body {
@@ -40,13 +40,15 @@ address {
 }
 
 /* -- nav -- */
-.navbar-brand>img {
-  margin-left: 50px;
+.navbar-brand {
+  padding: 25px 50px 100px 50px;
 }
 
 .navbar-default {
   background-color: transparent;
   border: none;
+  position: absolute;
+  width: 100%;
 }
 
 .navbar-default .navbar-toggle {
@@ -71,12 +73,13 @@ address {
 }
 
 /* Override to force hamburger menu */
-.navbar-fixed-top {
+/*.navbar-fixed-top {
     position: absolute;
-}
+}*/
 
 .navbar-header {
     float: none;
+    background-color: transparent;
 }
 .navbar-toggle {
     display: block;
@@ -86,7 +89,7 @@ address {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }*/
 .navbar-collapse.collapse {
-    display: none!important;
+    display: none !important;
 }
 .navbar-nav {
     float: none !important;
@@ -182,6 +185,19 @@ address {
   margin: 25px 0;
 }
 
+.col-content {
+  background-color: #fff;
+}
+
+.col-logo,
+.col-nologo {
+  padding: 150px 50px 50px 50px;
+}
+
+.col-nologo {
+  padding-top: 0;
+}
+
 .col-lg-padding {
   padding: 200px 50px 50px 50px;
 }
@@ -265,28 +281,38 @@ address {
   min-height: 750px;
 }
 
-.about-us-background {
-  background: url(../images/lute.jpg) no-repeat;
-  background-size: cover;
-  min-height: 685px;
+/*.page-container {
+  border: 1px solid blue;
 }
 
-.about-us-2-background {
-  background: url(../images/galileo.jpg) no-repeat;
-  background-size: cover;
-  min-height: 750px;
+.content-container {
+  width: 45%;
+  padding: 0 50px 0 50px;
+  margin-top: 165px;
+  background-color: #fff;
+  border: 1px solid #f00;
+}*/
+
+.what-we-do {
+  background: url(../images/old-detroit-background.jpg) no-repeat right top;
+}
+
+.about-us {
+  background: url(../images/lute.jpg) no-repeat right top;
+}
+
+.about-us-2 {
+  background: url(../images/megatrends_BW.jpg) no-repeat right top;
+}
+
+.contact-us {
+  background: url(../images/contact-us-background.jpg) no-repeat right top;
 }
 
 .old-detroit-background {
   background: url(../images/old-detroit-background.jpg) no-repeat;
   background-size: cover;
   min-height: 610px;
-}
-
-.contact-us-background {
-  background: url(../images/contact-us-background.jpg) no-repeat;
-  background-size: cover;
-  min-height: 650px;
 }
 
 figcaption {
@@ -346,7 +372,7 @@ figcaption h3 {
 
 .gallery img {
   float: left;
-  margin: 100px 25px 25px 25px;
+  margin: 0 10px 10px 10px;
 }
 
 /* -- Footer -- */
@@ -354,6 +380,10 @@ figcaption h3 {
 footer {
   color: #595959;
   font-size: 1.4em;
+  background-color: #EDEDED;
+}
+
+footer .row {
   background-color: #fff;
 }
 
@@ -379,7 +409,6 @@ footer .nav-pills>li>a {
 }
 
 footer h2 {
-  background-color: #EDEDED;
   text-align: center;
   font: normal 1.6em;
   padding: 45px 0;
