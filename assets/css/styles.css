@@ -22,27 +22,25 @@ address {
 #main-menu-container {
   background: url(../images/what-we-do-background.jpg) no-repeat left #fff;
   background-position: -900px;
-  overflow: hidden;
+  /*overflow: hidden;
   width: 100%;
   height: 100%;
-  /*padding: 0;
-  margin: -10px 0 0 0;
-  top: -5px;*/
-  /*position: absolute;*/
-  z-index: 1000;
+  z-index: 1000;*/
 }
 
 #main-menu {
   margin: 0 0 0 45%;
-  /*padding: 100px 0 0 50px;*/
   background-color: #fff;
-  width: 100%;
   height: 100%;
   min-height: 100%;
 }
 
 #main-menu li {
   right: -1000px;
+}
+
+.navbar-nav>li.active>a {
+  color: #BF8F02;
 }
 
 /* -- nav -- */
@@ -164,7 +162,7 @@ address {
 
 .love-this-thing,
 .love-this-thing-container {
-  background: url(../images/love-this-thing.jpg) no-repeat;
+  background: url(../images/NativeAmericansOnBeach_original.jpg) no-repeat;
   background-size: cover;
 }
 
@@ -202,7 +200,7 @@ address {
 
 .col-nologo {
   padding-top: 0;
-  top: 100px;
+  top: 50px;
 }
 
 .col-lg-padding {
@@ -214,7 +212,7 @@ address {
 }
 
 .col-sm-padding {
-  padding: 100px 50px 50px 50px;
+  padding: 10% 50px 50px 50px;
 }
 
 .warm-up-container {
@@ -290,6 +288,7 @@ address {
 
 .what-we-do {
   background: url(../images/what-we-do-background.jpg) no-repeat right top;
+  background-size: 55%;
 }
 
 .about-us {
@@ -302,17 +301,30 @@ address {
 
 .contact-us {
   background: url(../images/contact-us-background.jpg) no-repeat right top;
+  background-size: 55%;
 }
 
 .headlines-background {
   background: url(../images/headlines-background.jpg) no-repeat right top;
+  background-size: 55%;
 }
 
-.old-detroit-background {
+.btn-primary {
+  background-color: #000;
+  color: #BF8F02;
+}
+
+.btn-primary:hover {
+  background-color: #BF8F02;
+  color: #000;
+  border: 1px solid #ba8b02;
+}
+
+/*.old-detroit-background {
   background: url(../images/old-detroit-background.jpg) no-repeat;
   background-size: cover;
   min-height: 610px;
-}
+}*/
 
 figcaption {
   font-size: 1.5em;
@@ -369,14 +381,15 @@ figcaption h3 {
   color: #BF8F02;
 }
 
-.gallery img {
-  float: left;
-  margin: 0 2% 2% 2%;
+.gallery {
+  text-align: right;
 }
 
-.gallery img:first-child {
-  margin-left: 0;
+.gallery img {
+  margin: 20px;
+  border: 1px solid #000;
 }
+
 
 /* -- Footer -- */
 

@@ -78,10 +78,10 @@ function loadPartial(href) {
     case '#headlines':
     case '#about-us':
     case '#contact-us':
-    case '#measure-what-counts':
+    /*case '#measure-what-counts':
     case '#get-into-the-mud':
     case '#moons-and-marbles':
-    case '#love-this-thing':
+    case '#love-this-thing':*/
     case '#state-of-mi':
     case '#state-of-mi-1':
     case '#state-of-mi-2':
@@ -104,7 +104,7 @@ function loadPartial(href) {
 }
 
 function setActiveMenuItem(hash) {
-  $('#footer-menu li').each(function() {
+  $('#main-menu li, #footer-menu li').each(function() {
     var $this = $(this),
         href = $this.find('a.router-link').attr('href');
 
