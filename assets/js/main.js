@@ -44,16 +44,24 @@ $(document).ready(function() {
         $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
         var delay = 50;
-        $('.splash-square-img').each(function() {
+        $('.splash-square-img').css({filter: 'grayscale(0)'}).each(function() {
           var $this = $(this);
 
           setTimeout(function() {
-            $this.animate({'top': '0'});
+            $this.animate({'top': '0'}, 'slow', function() {
+              for (var i = 0; i <= 100; i++) {
+                setTimeout(function() {
+                  $this.css('filter', 'grayscale(' + i + '%)');
+                }, 250);
+              }
+            });
           }, delay);
 
           delay += 200;
         });
 
+        $('.splash-square a.router-link').textillate({in: { effect: 'fadeInUp', sync: true }});
+        $('body').addClass('is-loaded');
         this.app.state.firstLoad = false;
       }
     });

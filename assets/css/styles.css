@@ -168,9 +168,6 @@ address {
   position: absolute;
   left: 0;
   top: 285px;
-  /*
-  opacity: 0;
-  */
   width: 100%;
   height: auto;
   filter: grayscale(100%);
@@ -179,10 +176,14 @@ address {
   transition: all 1s ease;
 }
 
+.is-loaded .splash-square-img {
+  top: 0 !important;
+}
+
 .splash-square:hover .splash-square-img {
-  -webkit-filter: grayscale(0%);
-  -moz-filter: grayscale(0%);
-  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%) !important;
+  -moz-filter: grayscale(0%) !important;
+  filter: grayscale(0%) !important;
 }
 
 .splash-square-back {
