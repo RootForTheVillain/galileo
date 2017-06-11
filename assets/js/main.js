@@ -50,7 +50,6 @@ $(document).ready(function() {
 
           setTimeout(function() {
             $this.animate({'background-position-y': '0px'}, 'slow', function() {
-              $('.opacity-content').animate({'filter': 'opacity(1)'}, 'slow');
               $this.find('.opacity-content').css({'opacity': 1, 'visibility': 'visible'});
             });
           }, delay);

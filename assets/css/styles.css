@@ -110,31 +110,60 @@ address {
 
 .opacity-container {
   width: 50%;
+  height: 278px;
   float: left;
   background-color: #666;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  color: #fff;
+  font-size: 1.6em;
+  text-align: right;
+  background-color: rgba (0, 0, 0, .5);
+}
+
+.opacity-container:hover {
+  cursor: pointer;
 }
 
 .opacity-content {
   display: block;
   width: 100%;
-  height: 278px;
+  height: 100%;
   text-decoration: none;
   filter: grayscale(100%);
   opacity: 1;
   transition: opacity .5s linear;
-  color: #fff;
-  font-size: 1.3em;
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
+  position: absolute;
+  top: 0;
 }
 
 .opacity-content:hover {
-  opacity: 0;
+  opacity: 0 !important;
   text-decoration: none;
+}
+
+.opacity-container a.router-link {
+  margin-right: 10px;
   color: #fff;
+}
+
+.splash-square-back {
+  text-align: left;
+  padding: 15% 25px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(0,0,0,0.4);
+  opacity: 0;
+  transition: opacity .5s linear;
+}
+
+.opacity-container:hover .splash-square-back,
+.opacity-content:hover .splash-square-back {
+  opacity: 1;
 }
 
 .measure-what-counts,
