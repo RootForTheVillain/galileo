@@ -108,7 +108,7 @@ address {
   margin-top: 50px;
 }
 
-.opacity-container {
+/*.opacity-container {
   width: 50%;
   height: 278px;
   float: left;
@@ -149,6 +149,40 @@ address {
 .opacity-container a.router-link {
   margin-right: 10px;
   color: #fff;
+}*/
+
+.splash-square {
+  width: 50%;
+  height: 278px;
+  float: left;
+  background-color: #666;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  color: #fff;
+  font-size: 1.6em;
+  overflow: hidden;
+}
+
+.splash-square-img {
+  position: absolute;
+  left: 0;
+  top: 285px;
+  /*
+  opacity: 0;
+  */
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  transition: all 1s ease;
+}
+
+.splash-square:hover .splash-square-img {
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  filter: grayscale(0%);
 }
 
 .splash-square-back {
@@ -157,10 +191,30 @@ address {
   font-size: 1.2em;
   font-weight: bold;
   text-shadow: 0 0 4px rgba(0,0,0,0.4);
+  position: absolute;
+  z-index: 2;
   opacity: 0;
   transition: opacity .5s linear;
 }
 
+.splash-square a.router-link {
+  margin-right: 10px;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.splash-square:hover .splash-square-back {
+  opacity: 1;
+}
+
+.splash-square a.router-link {
+  position: absolute;
+  z-index: 3;
+}
+/*
 .opacity-container:hover .splash-square-back,
 .opacity-content:hover .splash-square-back {
   opacity: 1;
@@ -185,7 +239,7 @@ address {
 .love-this-thing-container {
   background-image: url(../images/NativeAmericansOnBeach_original.jpg);
 }
-
+*/
 /* -- Interior pages -- */
 .interior-heading {
   font-style: italic;

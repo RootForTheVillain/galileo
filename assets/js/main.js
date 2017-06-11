@@ -42,16 +42,13 @@ $(document).ready(function() {
     loadPartial(hash, function() {
       if (app.state.firstLoad === true) {
         $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
-        $('.opacity-content').css({'opacity': 0, 'visibility': 'hidden'});
 
         var delay = 50;
-        $('.opacity-container').css('background-position', 'left 1000px').each(function() {
+        $('.splash-square-img').each(function() {
           var $this = $(this);
 
           setTimeout(function() {
-            $this.animate({'background-position-y': '0px'}, 'slow', function() {
-              $this.find('.opacity-content').css({'opacity': 1, 'visibility': 'visible'});
-            });
+            $this.animate({'top': '0'});
           }, delay);
 
           delay += 200;
