@@ -108,13 +108,12 @@ address {
   margin-top: 50px;
 }
 
-.text-fadeIn {
-  visibility: hidden;
-}
-
 .opacity-container {
   width: 50%;
   float: left;
+  background-color: #666;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .opacity-content {
@@ -127,6 +126,9 @@ address {
   transition: opacity .5s linear;
   color: #fff;
   font-size: 1.3em;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .opacity-content:hover {
@@ -137,26 +139,22 @@ address {
 
 .measure-what-counts,
 .measure-what-counts-container {
-  background: url(../images/measure-what-counts.jpg) no-repeat #666;
-  background-size: cover;
+  background-image: url(../images/measure-what-counts.jpg);
 }
 
 .get-into-the-mud,
 .get-into-the-mud-container {
-  background: url(../images/get-into-the-mud.jpg) no-repeat #666;
-  background-size: cover;
+  background-image: url(../images/get-into-the-mud.jpg);
 }
 
 .moons-and-marbles,
 .moons-and-marbles-container {
-  background: url(../images/moons-and-marbles.jpg) no-repeat #666;
-  background-size: cover;
+  background-image: url(../images/moons-and-marbles.jpg);
 }
 
 .love-this-thing,
 .love-this-thing-container {
-  background: url(../images/NativeAmericansOnBeach_original.jpg) no-repeat #666;
-  background-size: cover;
+  background-image: url(../images/NativeAmericansOnBeach_original.jpg);
 }
 
 /* -- Interior pages -- */
