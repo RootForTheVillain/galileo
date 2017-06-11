@@ -38,7 +38,24 @@ $(document).ready(function() {
       toggleMenu();
     });
 
-    loadPartial(hash);
+    loadPartial(hash, function() {
+      $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
+      //$('.opacity-content').hide();
+
+      var delay = 50;
+      $('.splash-square').css('background-position', 'left 1000px').each(function() {
+        var $this = $(this);
+
+        setTimeout(function() {
+          $this.animate({'background-position-y': '0px'}, 'slow'/*, function() {
+            $this.find('.opacity-content').fadeIn('fast');
+          }*/);
+        }, delay);
+
+        delay += 200;
+      });
+    });
+
     setActiveMenuItem(hash);
 });
 
@@ -66,7 +83,7 @@ function bindRouterLinks() {
   });
 }
 
-function loadPartial(hash) {
+function loadPartial(hash, callback) {
   var href;
 
   if (app.state.menu === 'open') {
@@ -102,6 +119,10 @@ function loadPartial(hash) {
     bindRouterLinks();
     setActiveMenuItem(hash);
     $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+    if (callback && typeof callback === 'function') {
+      callback();
+    }
   });
 }
 
