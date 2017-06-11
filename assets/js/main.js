@@ -14,13 +14,10 @@ app = {
       return location;
     },
     back: function() {
-      if (this._history.length < 2)
-        return;
-
-      var index = this._history.length - 2,
-        location = this._history.slice(index, index + 1).pop();
-
-      loadPartial(location);
+      var location = this.getPrevious();
+      if (location != null) {
+          loadPartial(location);
+      }
     }
   },
   state: {
@@ -29,8 +26,10 @@ app = {
 };
 
 $(document).ready(function() {
-    var $menu = $('#main-menu-container');
-    $menu.hide();
+    var $menu = $('#main-menu-container'),
+      hash = window.location.hash;
+
+    $menu.hide().find('li').clone().appendTo('#footer-menu');
 
     $('#copyright-date').text(new Date().getFullYear());
 
@@ -39,15 +38,15 @@ $(document).ready(function() {
       toggleMenu();
     });
 
-    $menu.find('li').clone().appendTo('#footer-menu');
-
-    loadPartial(window.location.hash);
-    //bindRouterLinks();
-    setActiveMenuItem(window.location.hash);
+    loadPartial(hash);
+    setActiveMenuItem(hash);
 });
 
 function bindRouterLinks() {
   $('.router-link').off('click').click(function(e) {
+
+    console.log('[Back] router-link click evt called')
+
     var href = $(this).attr('href');
     e.stopPropagation();
 
@@ -58,21 +57,24 @@ function bindRouterLinks() {
     loadPartial(href);
   });
 
-  var previous = this.app.history.getPrevious();
+  $('.btn-back').attr('href', this.app.history.getPrevious());
 
-  $('.btn-back').attr('href', previous);
-
-  /*$('.btn-back').click(function(e) {
+  $('.btn-back').click(function(e) {
     e.stopPropagation();
-    app.history.back();
-  });*/
+    //app.history.back();
+    console.log('Back href=' + $(this).attr('href'))
+  });
 }
 
-function loadPartial(href) {
-  $('.main-menu-container').slideUp('fast');
+function loadPartial(hash) {
+  var href;
 
-  href = href.toLowerCase();
-  switch (href) {
+  if (app.state.menu === 'open') {
+    toggleMenu();
+  }
+
+  hash = hash.toLowerCase();
+  switch (hash) {
     case '#what-we-do':
     case '#our-work':
     case '#headlines':
@@ -87,15 +89,15 @@ function loadPartial(href) {
     case '#state-of-mi-2':
     case '#state-of-mi-3':
     case '#motown-redefined':
-      href = href.replace('#', '');
+      href = hash.replace('#', '');
     break;
     default:
       href = 'home';
+      hash = '#' + href;
     break;
   }
 
   $('[data-include]').load(href + '.html', function() {
-    var hash = '#' + href;
     app.history.add(hash);
     bindRouterLinks();
     setActiveMenuItem(hash);
