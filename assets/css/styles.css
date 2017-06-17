@@ -9,6 +9,18 @@ body {
   height: 100%;
 }
 
+section {
+  margin: 100px 0;
+}
+
+section:first-of-type {
+  margin-top: 0;
+}
+
+section:last-of-type {
+  margin-bottom: 0;
+}
+
 address {
   color: #BF8F02;
 }
@@ -97,17 +109,6 @@ address {
 }
 
 /* -- Splash -- */
-.splash-content {
-  padding: 175px 50px 50px 50px;
-  font-size: 2.3em;
-  line-height: 1.5em;
-}
-
-.splash-content h2 {
-  font-size: .7em;
-  margin-top: 50px;
-}
-
 .warmup-square {
   width: 50%;
   height: 278px;
@@ -119,7 +120,6 @@ address {
 }
 
 .warmup-square-img {
-
   width: 100%;
   height: auto;
   filter: grayscale(100%);
@@ -162,7 +162,18 @@ address {
   opacity: 1;
 }
 
-/* -- Splash page -- */
+.splash-content {
+  padding: 175px 50px 50px 50px;
+  font-size: 2.3em;
+  line-height: 1.5em;
+  margin-bottom: 200px;
+}
+
+.splash-content h2 {
+  font-size: .7em;
+  margin-top: 50px;
+}
+
 .splash-square {
   background-color: #666;
   position: relative;
@@ -236,13 +247,41 @@ address {
 }
 
 .col-sm-padding {
-  padding: 10% 50px 50px 50px;
+  padding: 75px 50px 50px 50px;
 }
 
 .col-solid-bg {
   background-color: #fff;
 }
 
+.col-no-top-padding {
+  padding: 0 50px 50px 50px;
+}
+
+/*-- Headlines --*/
+
+.headline {
+  clear: both;
+}
+
+.headline img {
+  float: left;
+  margin: 0 25px 25px 0;
+}
+
+.headline-desc {
+  float: left;
+  width: 50%;
+  font-size: 1.5em;
+  font-style: italic;
+  color: #666;
+}
+
+.headline-desc h3 {
+  font-style: normal;
+  font-weight: bold;
+  color: #333;
+}
 
 /*-- Our Work --*/
 .portfolio-item {
@@ -268,66 +307,6 @@ address {
   font-weight: bold;
   color: #333;
 }
-
-/*
-.warm-up-container {
-  filter: grayscale(100%);
-  opacity: 1;
-  transition: opacity .5s linear;
-}
-
-.warm-up-trigger:hover {
-  opacity: 0;
-}
-*/
-/*.portfolio-container {
-  clear: both;
-}
-.portfolio-image {
-  -webkit-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
-  -moz-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
-  box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
-  float: left;
-  margin: 0 25px 25px 0;
-}
-
-.portfolio-link {
-  display: block;
-  width: 340px;
-  height: 241px;
-  border: 1px solid #666;
-  -webkit-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
-  -moz-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
-  box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
-  float: left;
-  margin: 0 25px 25px 0;
-}
-
-.portfolio-container h3 {
-  padding-top: 50px;
-  font-style: normal;
-  color: #333;
-}
-
-.portfolio-container p {
-  font-size: 1.5em;
-  font-style: italic;
-  color: #666;
-}*/
-/*
-.mi-portfolio-container,
-.mi-portfolio-content {
-  background: url(../images/state-of-mi.jpg) no-repeat;
-  background-size:  340px 241px;
-  min-height: 241px;
-}
-
-.state-of-mi-container {
-  background: url(../images/state-of-mi.jpg) no-repeat;
-  background-size: cover;
-  width: 340px;
-  height: 241px;
-}*/
 
 .love-this-thing-content {
   background: url(../images/love-this-thing-page.png) no-repeat;
@@ -387,12 +366,6 @@ address {
   color: #000;
   border: 1px solid #ba8b02;
 }
-
-/*.old-detroit-background {
-  background: url(../images/old-detroit-background.jpg) no-repeat;
-  background-size: cover;
-  min-height: 610px;
-}*/
 
 figcaption {
   font-size: 1.5em;
@@ -511,3 +484,14 @@ footer h2>.btn-default:hover {
   color: #BF8F02;
   border-color: #ccc;
 }
+
+
+/*@media only screen and (max-width : 480px) {
+
+  .splash-square {
+    display: none;
+  }
+
+
+
+}*/

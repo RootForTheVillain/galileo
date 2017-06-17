@@ -40,7 +40,7 @@ $(document).ready(function() {
     });
 
     loadPartial(hash, function() {
-      if (app.state.firstLoad === true) {
+      if (app.state.firstLoad === true && window.innerWidth >= 768) {
         $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
         var delay = 50;
@@ -78,14 +78,25 @@ $(document).ready(function() {
 function bindRouterLinks() {
   $('.router-link').off('click').click(function(e) {
 
-    var href = $(this).attr('href');
     e.stopPropagation();
+
+    var $this = $(this),
+      href = $this.attr('href'),
+      scrollTo;
+
+    if ($this.hasClass('scroll-link')) {
+      scrollTo = () => {
+        console.log($(this).attr('href'))
+        var $anchor = $('a[name="' + $(this).attr('href') + '"]');
+        $('html, body').animate({scrollTop: $anchor.offset().top},'slow');
+      };
+    }
 
     if (app.state.menu === 'open') {
       toggleMenu();
     }
 
-    loadPartial(href);
+    loadPartial(href, scrollTo);
   });
 
   $('.btn-back').attr('href', this.app.history.getPrevious());
