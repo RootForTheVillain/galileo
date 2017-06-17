@@ -5,7 +5,7 @@ html {
 
 body {
   background-color: #fff;
-  font-family: "Segoe UI", Arial;
+  font-family: "Segoe UI Light", "Segoe UI", Arial;
   height: 100%;
 }
 
@@ -108,66 +108,18 @@ address {
   margin-top: 50px;
 }
 
-/*.opacity-container {
+.warmup-square {
   width: 50%;
   height: 278px;
   float: left;
-  background-color: #666;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
   color: #fff;
   font-size: 1.6em;
-  text-align: right;
-  background-color: rgba (0, 0, 0, .5);
 }
 
-.opacity-container:hover {
-  cursor: pointer;
-}
+.warmup-square-img {
 
-.opacity-content {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  filter: grayscale(100%);
-  opacity: 1;
-  transition: opacity .5s linear;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  top: 0;
-}
-
-.opacity-content:hover {
-  opacity: 0 !important;
-  text-decoration: none;
-}
-
-.opacity-container a.router-link {
-  margin-right: 10px;
-  color: #fff;
-}*/
-
-.splash-square {
-  width: 50%;
-  height: 278px;
-  float: left;
-  background-color: #666;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  color: #fff;
-  font-size: 1.6em;
-  overflow: hidden;
-}
-
-.splash-square-img {
-  position: absolute;
-  left: 0;
-  top: 285px;
   width: 100%;
   height: auto;
   filter: grayscale(100%);
@@ -176,17 +128,25 @@ address {
   transition: all 1s ease;
 }
 
-.is-loaded .splash-square-img {
+.is-loaded .warmup-square-img {
   top: 0 !important;
 }
 
-.splash-square:hover .splash-square-img {
+.warmup-square:hover .warmup-square-img {
   -webkit-filter: grayscale(0%) !important;
   -moz-filter: grayscale(0%) !important;
   filter: grayscale(0%) !important;
 }
 
-.splash-square-back {
+.warmup-square-active .warmup-square-img,
+.warmup-square:focus .warmup-square-img,
+.warmup-square:active .warmup-square-img {
+  -webkit-filter: grayscale(0%) !important;
+  -moz-filter: grayscale(0%) !important;
+  filter: grayscale(0%) !important;
+}
+
+.warmup-square-back {
   text-align: left;
   padding: 15% 25px;
   font-size: 1.2em;
@@ -198,49 +158,38 @@ address {
   transition: opacity .5s linear;
 }
 
+.warmup-square:hover .warmup-square-back {
+  opacity: 1;
+}
+
+/* -- Splash page -- */
+.splash-square {
+  background-color: #666;
+  position: relative;
+  overflow: hidden;
+}
+
+.splash-square-img {
+  position: absolute;
+  left: 0;
+  top: 285px;
+}
+
+.splash-square:hover .splash-square-img {
+  -webkit-filter: grayscale(50%) !important;
+  -moz-filter: grayscale(50%) !important;
+  filter: grayscale(50%) !important;
+}
+
 .splash-square a.router-link {
   margin-right: 10px;
   color: #fff;
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 2;
-}
-
-.splash-square:hover .splash-square-back {
-  opacity: 1;
-}
-
-.splash-square a.router-link {
-  position: absolute;
   z-index: 3;
 }
-/*
-.opacity-container:hover .splash-square-back,
-.opacity-content:hover .splash-square-back {
-  opacity: 1;
-}
 
-.measure-what-counts,
-.measure-what-counts-container {
-  background-image: url(../images/measure-what-counts.jpg);
-}
-
-.get-into-the-mud,
-.get-into-the-mud-container {
-  background-image: url(../images/get-into-the-mud.jpg);
-}
-
-.moons-and-marbles,
-.moons-and-marbles-container {
-  background-image: url(../images/moons-and-marbles.jpg);
-}
-
-.love-this-thing,
-.love-this-thing-container {
-  background-image: url(../images/NativeAmericansOnBeach_original.jpg);
-}
-*/
 /* -- Interior pages -- */
 .interior-heading {
   font-style: italic;
@@ -290,6 +239,37 @@ address {
   padding: 10% 50px 50px 50px;
 }
 
+.col-solid-bg {
+  background-color: #fff;
+}
+
+
+/*-- Our Work --*/
+.portfolio-item {
+  -webkit-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
+  -moz-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
+  box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
+  margin: 0 25px 25px 0;
+  border: 1px solid #ccc;
+}
+
+.portfolio-desc {
+  float: left;
+  width: 50%;
+  font-size: 1.5em;
+  font-style: italic;
+  color: #666;
+  padding-left: 50px;
+}
+
+.portfolio-desc h3 {
+  padding-top: 30px;
+  font-style: normal;
+  font-weight: bold;
+  color: #333;
+}
+
+/*
 .warm-up-container {
   filter: grayscale(100%);
   opacity: 1;
@@ -299,13 +279,11 @@ address {
 .warm-up-trigger:hover {
   opacity: 0;
 }
-
-.portfolio-container {
+*/
+/*.portfolio-container {
   clear: both;
 }
-
 .portfolio-image {
-  border: 1px solid #666;
   -webkit-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
   -moz-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
   box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
@@ -335,8 +313,8 @@ address {
   font-size: 1.5em;
   font-style: italic;
   color: #666;
-}
-
+}*/
+/*
 .mi-portfolio-container,
 .mi-portfolio-content {
   background: url(../images/state-of-mi.jpg) no-repeat;
@@ -349,7 +327,7 @@ address {
   background-size: cover;
   width: 340px;
   height: 241px;
-}
+}*/
 
 .love-this-thing-content {
   background: url(../images/love-this-thing-page.png) no-repeat;
@@ -496,21 +474,23 @@ footer .nav>li>a {
   padding: 10px;
   color: #595959;
   font-weight: normal;
+  border-radius: 0;
   border-top: 5px solid #fff;
+}
+
+footer .nav-pills>li>a:hover,
+.nav-pills>li.active>a:hover {
+  font-weight: bold;
+  background-color: #fff;
+  color: #595959;
 }
 
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:focus,
-.nav-pills>li.active>a:hover,
-footer .nav>li>a:focus,
-footer .nav>li>a:hover {
+footer .nav>li>a:focus {
   background-color: transparent;
   border-color: #BF8F02;
   color: #595959;
-}
-
-footer .nav-pills>li>a {
-  border-radius: 0;
 }
 
 footer h2 {

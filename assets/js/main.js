@@ -61,6 +61,12 @@ $(document).ready(function() {
         });
 
         $('.splash-square a.router-link').textillate({in: { effect: 'fadeInUp', sync: true }});
+
+        $('.splash-square').click(function(e) {
+          e.stopPropagation();
+          $(this).toggleClass('splash-square-active');
+        })
+
         $('body').addClass('is-loaded');
         this.app.state.firstLoad = false;
       }
@@ -71,8 +77,6 @@ $(document).ready(function() {
 
 function bindRouterLinks() {
   $('.router-link').off('click').click(function(e) {
-
-    console.log('[Back] router-link click evt called')
 
     var href = $(this).attr('href');
     e.stopPropagation();
