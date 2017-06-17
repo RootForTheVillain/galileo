@@ -22,7 +22,7 @@ app = {
   },
   state: {
     menu: 'closed',
-    firstLoad: true
+    isLoaded: false
   }
 };
 
@@ -40,9 +40,9 @@ $(document).ready(function() {
     });
 
     loadPartial(hash, function() {
-      if (app.state.firstLoad === true && window.innerWidth >= 768) {
-        $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
+      $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
+      if (!app.state.isLoaded) {
         var delay = 50;
         $('.splash-square-img').css({filter: 'grayscale(0)'}).each(function() {
           var $this = $(this);
@@ -62,13 +62,8 @@ $(document).ready(function() {
 
         $('.splash-square a.router-link').textillate({in: { effect: 'fadeInUp', sync: true }});
 
-        $('.splash-square').click(function(e) {
-          e.stopPropagation();
-          $(this).toggleClass('splash-square-active');
-        })
-
         $('body').addClass('is-loaded');
-        this.app.state.firstLoad = false;
+        this.app.state.isLoaded = true;
       }
     });
 
@@ -81,22 +76,25 @@ function bindRouterLinks() {
     e.stopPropagation();
 
     var $this = $(this),
-      href = $this.attr('href'),
-      scrollTo;
-
-    if ($this.hasClass('scroll-link')) {
-      scrollTo = () => {
-        console.log($(this).attr('href'))
-        var $anchor = $('a[name="' + $(this).attr('href') + '"]');
-        $('html, body').animate({scrollTop: $anchor.offset().top},'slow');
-      };
-    }
+      hash = $this.attr('href'),
+      href = hash.replace('#', ''),
+      $anchor = $('a[name="' + href + '"]');
 
     if (app.state.menu === 'open') {
       toggleMenu();
     }
 
-    loadPartial(href, scrollTo);
+    if ($this.hasClass('scroll-link') && window.location.hash === hash) {
+      smoothScroll($anchor);
+      return;
+    }
+
+    $('.splash-square').click(function(e) {
+      $(this).toggleClass('splash-square-active');
+      smoothScroll($('a[name="our-work"]'));
+    });    
+
+    loadPartial(hash);
   });
 
   $('.btn-back').attr('href', this.app.history.getPrevious());
@@ -104,7 +102,6 @@ function bindRouterLinks() {
   $('.btn-back').click(function(e) {
     e.stopPropagation();
     //app.history.back();
-    console.log('Back href=' + $(this).attr('href'))
   });
 }
 
@@ -118,20 +115,27 @@ function loadPartial(hash, callback) {
   hash = hash.toLowerCase();
   switch (hash) {
     case '#what-we-do':
-    case '#our-work':
-    case '#headlines':
-    case '#about-us':
     case '#contact-us':
-    /*case '#measure-what-counts':
-    case '#get-into-the-mud':
-    case '#moons-and-marbles':
-    case '#love-this-thing':*/
     case '#state-of-mi':
     case '#state-of-mi-1':
     case '#state-of-mi-2':
     case '#state-of-mi-3':
     case '#motown-redefined':
       href = hash.replace('#', '');
+    break;
+    case "#home":
+    case '#our-work':
+    case '#headlines':
+    case '#about-us':
+      href = 'home';
+
+      if (!app.state.isLoaded) {
+        $('body').addClass('is-loaded');
+      }
+
+      callback = function() {
+        smoothScroll($('a[name="' + hash.replace('#', '') + '"]'))
+      };
     break;
     default:
       href = 'home';
@@ -143,12 +147,15 @@ function loadPartial(hash, callback) {
     app.history.add(hash);
     bindRouterLinks();
     setActiveMenuItem(hash);
-    $('html, body').animate({ scrollTop: 0 }, 'fast');
 
     if (callback && typeof callback === 'function') {
       callback();
     }
   });
+}
+
+function smoothScroll($anchor) {
+  $('html, body').animate({scrollTop: $anchor.offset().top},'slow');
 }
 
 function setActiveMenuItem(hash) {

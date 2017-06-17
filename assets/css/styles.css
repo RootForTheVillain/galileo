@@ -132,6 +132,10 @@ address {
   top: 0 !important;
 }
 
+.is-loaded .splash-square-img {
+  top: 0 !important;
+}
+
 .warmup-square:hover .warmup-square-img {
   -webkit-filter: grayscale(0%) !important;
   -moz-filter: grayscale(0%) !important;
@@ -186,6 +190,10 @@ address {
   top: 285px;
 }
 
+.splash-square:hover {
+  cursor: pointer;
+}
+
 .splash-square:hover .splash-square-img {
   -webkit-filter: grayscale(50%) !important;
   -moz-filter: grayscale(50%) !important;
@@ -199,6 +207,10 @@ address {
   bottom: 0;
   right: 0;
   z-index: 3;
+}
+
+.splash-square a.router-link:hover {
+  text-decoration: none;
 }
 
 /* -- Interior pages -- */
