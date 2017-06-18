@@ -92,7 +92,7 @@ function bindRouterLinks() {
     $('.splash-square').click(function(e) {
       $(this).toggleClass('splash-square-active');
       smoothScroll($('a[name="our-work"]'));
-    });    
+    });
 
     loadPartial(hash);
   });
@@ -122,6 +122,10 @@ function loadPartial(hash, callback) {
     case '#state-of-mi-3':
     case '#motown-redefined':
       href = hash.replace('#', '');
+
+      callback = function() {
+        smoothScroll($('a[name="home"]'))
+      };
     break;
     case "#home":
     case '#our-work':
