@@ -81,7 +81,7 @@ $(document).ready(function() {
       $('body').addClass('is-loaded');
       app.state.isLoaded = true;
     });
-  } 
+  }
 });
 
 /**
@@ -106,29 +106,13 @@ function load(target, pathToLoad, cb) {
         anchor = href.replace(/\/?#/, '');
 
       e.stopPropagation();
+      e.preventDefault();
 
-      if (parent && $this.hasClass('scroll-link')) {
-
-        if (parent == app.getHash()) {
-          console.log('if i get to here....')
-          e.preventDefault();
-          $.smoothScroll({scrollTarget: 'a[name="' + anchor + '"]'});
-          console.log('smoothScroll', anchor)
-          return;
-        }
-
-        console.log('....then i shouldnt get to here')
-        //location = href;
-        location.href = href;
+      load('div[data-include]', path, function() {
+        app.runCallbacks($this);
+        $.smoothScroll({scrollTarget: 'a[name="top"]'});
         setActiveMenuItem(app.getHash());
-
-      } else {
-        load('div[data-include]', path, function() {
-          app.runCallbacks($this);
-          $.smoothScroll({scrollTarget: 'a[name="top"]'});
-          setActiveMenuItem(app.getHash());
-        });
-      }
+      });
     });
 
     if (cb && typeof cb === 'function')

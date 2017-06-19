@@ -72,13 +72,17 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<!--
+* URLs that start with "/" will allow the default behavior, and load the new page.
+* URLs that start with "#" will be handled by the router.
+-->
 <div id="main-menu-container">
   <ul id="main-menu" class="nav navbar-nav navbar-right">
-    <li><a href="/" class="router-link scroll-link">Home</a></li>
+    <li><a href="/">Home</a></li>
     <li><a href="#what-we-do" class="router-link">What We Do</a></li>
     <li><a href="#our-work" class="router-link">Our Work</a></li>
     <li><a href="#headlines" class="router-link">Headlines</a></li>
-    <li><a href="/#about-us" data-parent="#home" class="router-link scroll-link">About Us</a></li>
+    <li><a href="#about-us" data-parent="#home" class="router-link">About Us</a></li>
     <li><a href="#contact-us" class="router-link">Contact Us</a></li>
   </ul>
 </div>
