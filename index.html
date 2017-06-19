@@ -55,7 +55,7 @@
 </head>
 
 <body>
-<a name="home"></a>
+<a name="top"></a>
 <nav class="navbar navbar-default" style="z-index:100000">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -74,16 +74,25 @@
 
 <div id="main-menu-container">
   <ul id="main-menu" class="nav navbar-nav navbar-right">
-    <li><a href="#home" class="router-link scroll-link">Home</a></li>
+    <li><a href="/" class="router-link scroll-link">Home</a></li>
     <li><a href="#what-we-do" class="router-link">What We Do</a></li>
-    <li><a href="#our-work" class="router-link scroll-link">Our Work</a></li>
-    <li><a href="#headlines" class="router-link scroll-link">Headlines</a></li>
-    <li><a href="#about-us" class="router-link scroll-link">About Us</a></li>
+    <li><a href="#our-work" class="router-link">Our Work</a></li>
+    <li><a href="#headlines" class="router-link">Headlines</a></li>
+    <li><a href="/#about-us" data-parent="#home" class="router-link scroll-link">About Us</a></li>
     <li><a href="#contact-us" class="router-link">Contact Us</a></li>
   </ul>
 </div>
 
-<div data-include="content" class="container-fluid"></div>
+<!--
+* Elements in interior pages specified with "data-content"
+* and with class="homepage-section" will appear on homepage.
+-->
+<div data-include="content" class="container-fluid">
+  <div data-content="home" data-callback="home,setActiveMenuItem"></div>
+  <div data-content="our-work" data-filter=".homepage-section"></div>
+  <div data-content="headlines" data-filter=".homepage-section"></div>
+  <div data-content="about-us" data-filter=".homepage-section"></div>
+</div>
 
 <footer class="footer">
   <div class="container-fluid">
@@ -121,6 +130,7 @@
 <script src="assets/js/jquery.fittext.js"></script>
 <script src="assets/js/jquery.lettering.js"></script>
 <script src="assets/js/jquery.textillate.js"></script>
+<script src="assets/js/jquery.smooth-scroll.js"></script>
 
 <script src="assets/js/main.js"></script>
 

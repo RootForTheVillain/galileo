@@ -23,153 +23,190 @@ app = {
   state: {
     menu: 'closed',
     isLoaded: false
+  },
+  getHash: function() {
+    return (document.location.hash) ? document.location.hash: '/';
+  },
+  getPathFromHash: function(hash) {
+    return (hash == '/') ? hash:
+      hash.replace('#', '') + '.html';
+  },
+  getCallbacks: function($elem) {
+    var arr,
+      cb = $elem.data('callback'),
+      callbacks;
+
+    if (cb) {
+      arr = cb.split(',');
+      callbacks = {};
+
+      for (var i = 0; i < arr.length; i++) {
+        if (typeof window[arr[i]] === 'function') {
+          callbacks[arr[i]] = window[arr[i]];
+        }
+      }
+    }
+    return callbacks;
+  },
+  runCallbacks: function($elem) {
+    var callbacks = this.getCallbacks($elem);
+    if (callbacks && typeof callbacks === 'object') {
+      for (var key in callbacks) {
+        if (callbacks.hasOwnProperty(key)) {
+
+          console.log('Running callbacks:', key);
+
+          callbacks[key].call();
+        }
+      }
+    }
   }
 };
 
+
+
 $(document).ready(function() {
-    var $menu = $('#main-menu-container'),
-      hash = window.location.hash;
 
-    $menu.hide().find('li').clone().appendTo('#footer-menu');
-
-    $('#copyright-date').text(new Date().getFullYear());
-
-    $('#hamburger').click(function(e) {
-      e.stopPropagation();
-      toggleMenu();
+  var hash = location.hash;
+  if (hash) {
+    load(null, app.getPathFromHash(hash), function() {
+      setActiveMenuItem(hash);
     });
+  }
 
-    loadPartial(hash, function() {
-      $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
+  console.log('document.ready', app.state.isLoaded, location.hash)
 
-      if (!app.state.isLoaded) {
-        var delay = 50;
-        $('.splash-square-img').css({filter: 'grayscale(0)'}).each(function() {
-          var $this = $(this);
-
-          setTimeout(function() {
-            $this.animate({'top': '0'}, 'slow', function() {
-              for (var i = 0; i <= 100; i++) {
-                setTimeout(function() {
-                  $this.css('filter', 'grayscale(' + i + '%)');
-                }, 250);
-              }
-            });
-          }, delay);
-
-          delay += 200;
-        });
-
-        $('.splash-square a.router-link').textillate({in: { effect: 'fadeInUp', sync: true }});
-
-        $('body').addClass('is-loaded');
-        this.app.state.isLoaded = true;
-      }
+  if (!app.state.isLoaded) {
+    index(function() {
+      $('body').addClass('is-loaded');
+      app.state.isLoaded = true;
     });
-
-    setActiveMenuItem(hash);
+  } 
 });
 
-function bindRouterLinks() {
-  $('.router-link').off('click').click(function(e) {
+/**
+ * @target      [String|$elem]  Selector of element to load content into
+ * @pathToLoad  [String]        Path (filename, CSS selector [optional]) of
+ *                                content to load into @target
+ * @cb          [Function]      (Optional) Function to run when load completes
+ */
+function load(target, pathToLoad, cb) {
 
-    e.stopPropagation();
+  target = (!target) ? 'div[data-include]': target;
 
-    var $this = $(this),
-      hash = $this.attr('href'),
-      href = hash.replace('#', ''),
-      $anchor = $('a[name="' + href + '"]');
+  app.history.add(document.location.hash);
 
-    if (app.state.menu === 'open') {
-      toggleMenu();
-    }
+  $(target).load(pathToLoad, function() {
 
-    if ($this.hasClass('scroll-link') && window.location.hash === hash) {
-      smoothScroll($anchor);
-      return;
-    }
+    $('.router-link').off('click').click(function(e) {
+      var $this = $(this),
+        href = $this.attr('href'),
+        parent = $this.data('parent'),
+        path = app.getPathFromHash(href),
+        anchor = href.replace(/\/?#/, '');
 
-    $('.splash-square').click(function(e) {
-      $(this).toggleClass('splash-square-active');
-      smoothScroll($('a[name="our-work"]'));
+      e.stopPropagation();
+
+      if (parent && $this.hasClass('scroll-link')) {
+
+        if (parent == app.getHash()) {
+          console.log('if i get to here....')
+          e.preventDefault();
+          $.smoothScroll({scrollTarget: 'a[name="' + anchor + '"]'});
+          console.log('smoothScroll', anchor)
+          return;
+        }
+
+        console.log('....then i shouldnt get to here')
+        //location = href;
+        location.href = href;
+        setActiveMenuItem(app.getHash());
+
+      } else {
+        load('div[data-include]', path, function() {
+          app.runCallbacks($this);
+          $.smoothScroll({scrollTarget: 'a[name="top"]'});
+          setActiveMenuItem(app.getHash());
+        });
+      }
     });
 
-    loadPartial(hash);
+    if (cb && typeof cb === 'function')
+      cb();
+
+    if (app.state.menu === 'open')
+      toggleMenu();
   });
+}
 
-  $('.btn-back').attr('href', this.app.history.getPrevious());
+function index(cb) {
+  var $menu = $('#main-menu-container'),
+    hash = app.getHash();
 
-  $('.btn-back').click(function(e) {
+  $menu.hide().find('li').clone().appendTo('#footer-menu');
+
+  $('#copyright-date').text(new Date().getFullYear());
+
+  $('#hamburger').click(function(e) {
     e.stopPropagation();
-    //app.history.back();
-  });
-}
-
-function loadPartial(hash, callback) {
-  var href;
-
-  if (app.state.menu === 'open') {
     toggleMenu();
-  }
-
-  hash = hash.toLowerCase();
-  switch (hash) {
-    case '#what-we-do':
-    case '#contact-us':
-    case '#state-of-mi':
-    case '#state-of-mi-1':
-    case '#state-of-mi-2':
-    case '#state-of-mi-3':
-    case '#motown-redefined':
-      href = hash.replace('#', '');
-
-      callback = function() {
-        smoothScroll($('a[name="home"]'))
-      };
-    break;
-    case "#home":
-    case '#our-work':
-    case '#headlines':
-    case '#about-us':
-      href = 'home';
-
-      if (!app.state.isLoaded) {
-        $('body').addClass('is-loaded');
-      }
-
-      callback = function() {
-        smoothScroll($('a[name="' + hash.replace('#', '') + '"]'))
-      };
-    break;
-    default:
-      href = 'home';
-      hash = '#' + href;
-    break;
-  }
-
-  $('[data-include]').load(href + '.html', function() {
-    app.history.add(hash);
-    bindRouterLinks();
-    setActiveMenuItem(hash);
-
-    if (callback && typeof callback === 'function') {
-      callback();
-    }
   });
+
+  /**
+    * Interior page elements with class="homepage-section"
+    * will appear on homepage
+    */
+  $('div[data-content]').each(function() {
+    var $this = $(this),
+      filename = ($this.data('content') == '/') ? $this.data('content'):
+        $this.data('content') + '.html',
+      filter = $this.data('filter'),
+      pathToLoad = (filter) ? filename + ' ' + filter: filename;
+
+    load($this, pathToLoad, function() {
+      app.runCallbacks($this);
+    });
+  });
+
+  if (cb && typeof cb === 'function')
+    cb();
 }
 
-function smoothScroll($anchor) {
-  $('html, body').animate({scrollTop: $anchor.offset().top},'slow');
+function home(cb) {
+  $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
+
+  var delay = 50;
+  $('.splash-square-img').css({filter: 'grayscale(0)'}).each(function() {
+    var $this = $(this);
+
+    setTimeout(function() {
+      $this.animate({'top': '0'}, 'slow', function() {
+        for (var i = 0; i <= 100; i++) {
+          setTimeout(function() {
+            $this.css('filter', 'grayscale(' + i + '%)');
+          }, 250);
+        }
+      });
+    }, delay);
+
+    delay += 200;
+  });
+
+  $('.splash-square a.router-link').textillate({in: { effect: 'fadeInUp', sync: true }});
+
+  if (cb && typeof cb === 'function')
+    cb();
 }
 
 function setActiveMenuItem(hash) {
+  hash = (!hash) ? app.getHash(): hash;
   $('#main-menu li, #footer-menu li').each(function() {
     var $this = $(this),
         href = $this.find('a.router-link').attr('href');
 
     $this.removeClass('active');
 
-    if (href !== undefined && href.toLowerCase() == hash.toLowerCase()) {
+    if (href && href == hash) {
       $this.addClass('active');
     }
   });
