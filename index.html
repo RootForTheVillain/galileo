@@ -73,8 +73,10 @@
 </nav>
 
 <!--
-* URLs that start with "/" will allow the default behavior, and load the new page.
-* URLs that start with "#" will be handled by the router.
+* URLs with a class of .router-link will be managed by the router. All others
+* function as normal.
+*
+* All of these menu items get copied to the footer when the app is bootstrapped.
 -->
 <div id="main-menu-container">
   <ul id="main-menu" class="nav navbar-nav navbar-right">

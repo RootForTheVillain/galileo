@@ -53,9 +53,6 @@ app = {
     if (callbacks && typeof callbacks === 'object') {
       for (var key in callbacks) {
         if (callbacks.hasOwnProperty(key)) {
-
-          console.log('Running callbacks:', key);
-
           callbacks[key].call();
         }
       }
@@ -67,14 +64,15 @@ app = {
 
 $(document).ready(function() {
 
+  /**
+   * Handles refreshes on partials
+   */
   var hash = location.hash;
   if (hash) {
     load(null, app.getPathFromHash(hash), function() {
       setActiveMenuItem(hash);
     });
   }
-
-  console.log('document.ready', app.state.isLoaded, location.hash)
 
   if (!app.state.isLoaded) {
     index(function() {
@@ -106,7 +104,6 @@ function load(target, pathToLoad, cb) {
         anchor = href.replace(/\/?#/, '');
 
       e.stopPropagation();
-      e.preventDefault();
 
       load('div[data-include]', path, function() {
         app.runCallbacks($this);
@@ -123,6 +120,9 @@ function load(target, pathToLoad, cb) {
   });
 }
 
+/**
+ * Bootstrapper
+ */
 function index(cb) {
   var $menu = $('#main-menu-container'),
     hash = app.getHash();
@@ -184,9 +184,10 @@ function home(cb) {
 
 function setActiveMenuItem(hash) {
   hash = (!hash) ? app.getHash(): hash;
+
   $('#main-menu li, #footer-menu li').each(function() {
     var $this = $(this),
-        href = $this.find('a.router-link').attr('href');
+        href = $this.find('a').attr('href');
 
     $this.removeClass('active');
 

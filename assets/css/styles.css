@@ -415,7 +415,7 @@ figcaption h3 {
   color: #BF8F02;
 }
 
-.next-link:hover {
+/*.next-link:hover {
   color: #444;
   text-decoration: none;
 }
@@ -424,7 +424,7 @@ figcaption h3 {
   color: #444;
   text-decoration: none;
   font-weight: bold;
-}
+}*/
 
 .current-page {
   margin-top: 50px;
