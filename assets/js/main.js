@@ -157,6 +157,9 @@ function index(cb) {
 }
 
 function home(cb) {
+  if ($(window).width() <= 768)
+    return;
+
   $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
   var delay = 50;

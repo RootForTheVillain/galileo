@@ -505,13 +505,92 @@ footer h2>.btn-default:hover {
   border-color: #ccc;
 }
 
+@media only screen and (max-width : 480px) {
 
-/*@media only screen and (max-width : 480px) {
+  section {
+    margin: 0;
+  }
 
+  .warmup-square,
   .splash-square {
+    width: 100%;
+  }
+
+  .splash-content {
+    margin: 0;
+  }
+
+  .col-logo,
+  .col-md-padding {
+    padding: 100px 25px 25px 25px;
+  }
+
+  .col-sm-padding {
+    padding: 50px 25px 25px 25px;
+  }
+
+  .portfolio .warmup-square {
+    height: auto;
+  }
+
+  .portfolio-desc {
+    padding: 0;
+    width: 100%;
+  }
+
+  .headline {
+    clear: none;
+  }
+
+  .headline-desc {
+    width: 100%;
+    float: none;
+  }
+
+  .headline img {
+    float: none;
+  }
+
+  .about-us,
+  .about-us-2,
+  .state-of-mi-background,
+  .state-of-mi-2-background,
+  .state-of-mi-3-background,
+  .contact-us {
+    background: none;
+  }
+
+  footer .nav-pills {
     display: none;
   }
 
+  .btn-default {
+    width: 90%;
+    margin: 20px 0;
+  }
 
+  #main-menu-container {
+    background: none;
+  }
 
-}*/
+  #main-menu {
+    margin: 0;
+    background-color: #fff;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .what-we-do {
+    background: none;
+  }
+
+  .gallery {
+    text-align: center;
+  }
+
+  .predictive-ux {
+    width: 100%;
+    height: auto;
+  }
+
+}
