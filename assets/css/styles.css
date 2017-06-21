@@ -9,12 +9,38 @@ body {
   height: 100%;
 }
 
-section {
-  margin: 100px 0;
+.section-heading {
+  display: none;
 }
 
-section:first-of-type {
+.home-page section {
+  border-top: 1px solid #ccc;
+}
+
+#home section {
+  border-top: none !important;
+}
+
+.home-page .section-heading {
+  background-color: #fff;
+  padding: 10px;
+  margin-left: 50px;
+  position: relative;
+  top: -15px;
+  font-size: 1.1em;
+  color: #000;
+  display: inline;
+}
+
+.home-page .section-heading:hover {
+  text-decoration: none;
+  cursor: default;
+  color: #000;
+}
+
+section::nth-child(0) {
   margin-top: 0;
+  border-top: none;
 }
 
 section:last-of-type {
@@ -191,6 +217,8 @@ address {
   position: absolute;
   left: 0;
   top: 285px;
+  height: 278px;
+  overflow: hidden;
 }
 
 .splash-square-back {
