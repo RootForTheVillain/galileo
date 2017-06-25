@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTZ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
+}
+
 html {
   min-height: 100%;
   position: relative;
@@ -5,7 +12,7 @@ html {
 
 body {
   background-color: #fff;
-  font-family: "Segoe UI Light", "Segoe UI", Arial;
+  font-family: "Segoe UI Light", "Open Sans Light", Arial;
   height: 100%;
 }
 
@@ -13,7 +20,7 @@ body {
   display: none;
 }
 
-.home-page section {
+.splash-page section {
   border-top: 1px solid #ccc;
 }
 
@@ -21,7 +28,7 @@ body {
   border-top: none !important;
 }
 
-.home-page .section-heading {
+.splash-page .section-heading {
   background-color: #fff;
   padding: 10px;
   margin-left: 50px;
@@ -32,7 +39,7 @@ body {
   display: inline;
 }
 
-.home-page .section-heading:hover {
+.splash-page .section-heading:hover {
   text-decoration: none;
   cursor: default;
   color: #000;
@@ -52,6 +59,16 @@ address {
 }
 
 .col-no-gutter {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row .no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row .no-gutters > [class^="col-"],
+.row .no-gutters > [class*=" col-"] {
   padding-right: 0;
   padding-left: 0;
 }
@@ -276,6 +293,12 @@ address {
   background-color: #fff;
 }
 
+/*.col-vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}*/
+
 .col-logo,
 .col-nologo {
   padding: 150px 50px 50px 50px;
@@ -320,7 +343,7 @@ address {
 .headline-desc {
   float: left;
   width: 50%;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-style: italic;
   color: #666;
 }
@@ -329,6 +352,7 @@ address {
   font-style: normal;
   font-weight: bold;
   color: #333;
+  font-size: 1.1em;
 }
 
 /*-- Our Work --*/
@@ -367,8 +391,8 @@ address {
 }
 
 .what-we-do {
-  background: url(../images/what-we-do-background.jpg) no-repeat right top;
-  background-size: 55%;
+  background: url(../images/what-we-do-background.jpg) no-repeat right bottom;
+  background-size: cover;
 }
 
 .about-us {
@@ -470,11 +494,11 @@ figcaption h3 {
 }
 
 .gallery {
-  text-align: right;
+  overflow: hidden;
 }
 
 .gallery img {
-  margin: 20px;
+  margin: 50px 50px 30px 0;
   border: 1px solid #000;
 }
 
@@ -485,6 +509,7 @@ footer {
   color: #595959;
   font-size: 1.4em;
   background-color: #EDEDED;
+  margin-top: 15px;
 }
 
 footer .row {
@@ -531,6 +556,18 @@ footer h2>.btn-default:hover {
   background-color: #ccc;
   color: #BF8F02;
   border-color: #ccc;
+}
+
+.copyright {
+  padding: 15px 0 10px 50px;
+}
+
+@media only screen and (max-width : 992px) {
+
+  footer div[role="navigation"] {
+    display: none;
+  }
+
 }
 
 @media only screen and (max-width : 480px) {
@@ -588,10 +625,6 @@ footer h2>.btn-default:hover {
     background: none;
   }
 
-  footer .nav-pills {
-    display: none;
-  }
-
   .btn-default {
     width: 90%;
     margin: 20px 0;
@@ -610,10 +643,6 @@ footer h2>.btn-default:hover {
 
   .what-we-do {
     background: none;
-  }
-
-  .gallery {
-    text-align: center;
   }
 
   .predictive-ux {

@@ -104,7 +104,7 @@ function load(target, pathToLoad, cb) {
         anchor = href.replace(/\/?#/, '');
 
       e.stopPropagation();
-      $('body').removeClass('home-page');
+      //$('body').removeClass('home-page');
 
       load('div[data-include]', path, function() {
         app.runCallbacks($this);
@@ -128,11 +128,11 @@ function index(cb) {
   var $menu = $('#main-menu-container'),
     hash = app.getHash();
 
-  $('body').addClass('home-page');
+  //$('body').addClass('home-page');
 
   $menu.hide().find('li').clone().appendTo('#footer-menu');
 
-  $('#copyright-date').text(new Date().getFullYear());
+  $('.copyright span').text(new Date().getFullYear());
 
   $('#hamburger').click(function(e) {
     e.stopPropagation();
