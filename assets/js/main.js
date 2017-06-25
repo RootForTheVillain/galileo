@@ -115,8 +115,8 @@ function load(target, pathToLoad, cb) {
     if (cb && typeof cb === 'function')
       cb();
 
-    /*if (app.state.menu === 'open')
-      toggleMenu();*/
+    if (app.state.menu === 'open')
+      toggleMenu();
   });
 }
 
@@ -222,6 +222,7 @@ function toggleMenu() {
     $wrapper.animate({backgroundPosition: '-900px'}, function() {
       $menu.slideUp(100);
     });
+    $('.navbar-toggle').removeClass('active');
     app.state.menu = 'closed';
 
   } else {
@@ -236,6 +237,7 @@ function toggleMenu() {
         $this.animate({left: '0px'}, 'fast');
       }, delay);
     });
+    $('.navbar-toggle').addClass('active');
     app.state.menu = 'open';
   }
 }

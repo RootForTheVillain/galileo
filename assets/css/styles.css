@@ -12,7 +12,7 @@ html {
 
 body {
   background-color: #fff;
-  font-family: "Segoe UI Light", "Open Sans Light", Arial;
+  font-family: "Segoe UI Light", "Open Sans Light", Arial, sans-serif;
   height: 100%;
 }
 
@@ -24,11 +24,12 @@ body {
   border-top: 1px solid #ccc;
 }
 
-#home section {
+.section-no-border-top section {
   border-top: none !important;
 }
 
-.splash-page .section-heading {
+.splash-page .section-heading,
+.show-section-heading {
   background-color: #fff;
   padding: 10px;
   margin-left: 50px;
@@ -305,6 +306,10 @@ address {
 
 .splash-square a.router-link:hover {
   text-decoration: none;
+}
+
+.splash-headlines .col-md-padding {
+  padding-top: 100px;
 }
 
 /* -- Interior pages -- */
