@@ -104,7 +104,6 @@ function load(target, pathToLoad, cb) {
         anchor = href.replace(/\/?#/, '');
 
       e.stopPropagation();
-      //$('body').removeClass('home-page');
 
       load('div[data-include]', path, function() {
         app.runCallbacks($this);
@@ -116,8 +115,8 @@ function load(target, pathToLoad, cb) {
     if (cb && typeof cb === 'function')
       cb();
 
-    if (app.state.menu === 'open')
-      toggleMenu();
+    /*if (app.state.menu === 'open')
+      toggleMenu();*/
   });
 }
 
@@ -128,13 +127,15 @@ function index(cb) {
   var $menu = $('#main-menu-container'),
     hash = app.getHash();
 
-  //$('body').addClass('home-page');
-
   $menu.hide().find('li').clone().appendTo('#footer-menu');
 
   $('.copyright span').text(new Date().getFullYear());
 
-  $('#hamburger').click(function(e) {
+  $('.navbar-toggle').click(function() {
+      $(this).toggleClass('active');
+  });
+
+  $('button.navbar-toggle').click(function(e) {
     e.stopPropagation();
     toggleMenu();
   });
@@ -205,7 +206,8 @@ function setActiveMenuItem(hash) {
 
 function toggleMenu() {
   var delay,
-      $menu = $('#main-menu-container');
+      $menu = $('#main-menu-container'),
+      $wrapper = $('#main-menu-container .main-menu-wrapper');
 
   if (app.state.menu === 'open') {
     delay = 0;
@@ -217,14 +219,16 @@ function toggleMenu() {
       delay += 75;
     });
 
-    $menu.animate({backgroundPosition: '-900px'}).slideUp(100);
+    $wrapper.animate({backgroundPosition: '-900px'}, function() {
+      $menu.slideUp(100);
+    });
     app.state.menu = 'closed';
 
   } else {
 
     delay = 75;
     $menu.slideDown(100, function() {
-      $menu.animate({backgroundPosition: '0px'});
+      $wrapper.animate({backgroundPosition: '0px'});
     }).find('li').each(function() {
       delay += 50;
       var $this = $(this);
