@@ -70,7 +70,8 @@ $(window).scroll(function() {
     footerHeight = footerTop + $footer.height();
 
   $('.homepage-section').each(function() {
-    var $section = $(this),
+    var $fn,
+      $section = $(this),
       $hr = $section.find('.separator hr'),
       $elem = ($hr.length > 0) ? $hr: $section,
       elemTop = $elem.offset().top,
@@ -80,7 +81,7 @@ $(window).scroll(function() {
       && (elemTop <= windowHeight)
       && (elemHeight <= windowHeight)
       && (elemTop >= scrollTop)) {
-        var $fn = $section.find('[class*="-text"]')
+        $fn = $section.find('[class*="-text"]')
           .textillate({in: {
               effect: 'fadeInUp',
               sync: true,
@@ -88,9 +89,7 @@ $(window).scroll(function() {
             }});
 
         if ($hr.length > 0) {
-          $hr.animate({'width': '100%'}, 800, function() {
-            $fn();
-          });
+          $hr.animate({'width': '100%'}, 800, function() { $fn });
         } else {
           $fn();
         }
