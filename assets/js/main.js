@@ -69,20 +69,25 @@ $(window).scroll(function() {
     $footerTop = $footer.offset().top,
     $footerHeight = $footerTop + $footer.height();
 
-  // Animates <hr>s on homepage
-  $('.homepage-section hr').each(function() {
-    var $this = $(this),
-      $elemTop = $this.offset().top,
-      $elemHeight = $elemTop + $this.height();
+  $('.homepage-section').each(function() {
+    var $section = $(this),
+      $hr = $section.children('hr');
 
-    if (($elemHeight >= $scrollTop)
-      && ($elemTop <= $windowHeight)
-      && ($elemHeight <= $windowHeight)
-      && ($elemTop >= $scrollTop)) {
-        $this.animate({'width': '100%'}, 800, function() {
-          //$('.scroll-hook').textillate({in: { effect: 'fadeInUp', sync: true }});
-        });
+    if ($hr.length > 0) {
+      var $elemTop = $hr.offset().top,
+        $elemHeight = $elemTop + $hr.height();
+
+      if (($elemHeight >= $scrollTop)
+        && ($elemTop <= $windowHeight)
+        && ($elemHeight <= $windowHeight)
+        && ($elemTop >= $scrollTop)) {
+          $section.find('[class*="-text"]')
+            .textillate({in: {effect: 'fadeInUp', sync: true, delay: 10}});
+
+          $hr.animate({'width': '100%'}, 700);
+      }
     }
+
   });
 
   //animates contact us in footer
@@ -90,16 +95,13 @@ $(window).scroll(function() {
     && ($footerTop <= $windowHeight)
     && ($footerHeight <= $windowHeight)
     && ($footerTop >= $scrollTop)) {
-      $footer.animate({'padding-top': '30px', 'padding-bottom': '30px'}, 2500, function() {
-        console.log('done')
-      });
+      $footer.animate({'padding-top': '30px', 'padding-bottom': '30px'}, 800);
   }
 });
 
 
 
 $(document).ready(function() {
-
   /**
    * Handles refreshes on partials
    */
@@ -201,6 +203,7 @@ function home(cb) {
   if ($(window).width() <= 768)
     return;
 
+  $('[class*="-text"]').css('visibility', 'hidden');
   $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
   var delay = 50;
