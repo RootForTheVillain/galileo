@@ -381,54 +381,52 @@ address {
 
 /*-- Headlines --*/
 
-.headline {
+/*.headline {
   clear: both;
 }
 
-.headline img {
+.gallery img {
   float: left;
   margin: 0 25px 25px 0;
-}
+}*/
 
-.headline-desc {
+.gallery-description {
   float: left;
   width: 50%;
-  font-size: 1.3em;
+  font-size: 1.3vw;
   font-style: italic;
   color: #666;
+  padding-left: 25px;
 }
 
-.headline-desc h3 {
+.portfolio .gallery-description {
+  padding-top: 35px;
+}
+
+.gallery-description h3 {
   font-style: normal;
   font-weight: bold;
   color: #333;
-  font-size: 1.1em;
+  font-size: 1.5vw;
 }
 
 /*-- Our Work --*/
-.portfolio-item {
+.gallery-item {
   -webkit-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
   -moz-box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
   box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
-  margin: 0 25px 25px 0;
   border: 1px solid #ccc;
+  float: left;
+  margin: 0 0 25px 0;
 }
 
-.portfolio-desc {
-  float: left;
-  width: 50%;
-  font-size: 1.5em;
-  font-style: italic;
-  color: #666;
+/*.portfolio-desc {
   padding-left: 50px;
 }
 
 .portfolio-desc h3 {
-  padding-top: 30px;
-  font-style: normal;
-  font-weight: bold;
-  color: #333;
-}
+  padding-top: 40px;
+}*/
 
 .love-this-thing-content {
   background: url(../images/love-this-thing-page.png) no-repeat;
@@ -543,14 +541,14 @@ figcaption h3 {
   color: #BF8F02;
 }
 
-.gallery {
+/*.gallery {
   overflow: hidden;
 }
 
 .gallery img {
   margin: 50px 50px 30px 0;
   border: 1px solid #000;
-}
+}*/
 
 
 /* -- Footer -- */
@@ -564,6 +562,10 @@ footer {
 
 footer .row {
   background-color: #fff;
+}
+
+footer .nav {
+  margin-top: 15px;
 }
 
 footer .nav>li>a {
@@ -648,7 +650,7 @@ footer h2>.btn-default:hover {
     height: auto;
   }
 
-  .portfolio-desc {
+  /*.portfolio-desc {
     padding: 0;
     width: 100%;
   }
@@ -664,7 +666,7 @@ footer h2>.btn-default:hover {
 
   .headline img {
     float: none;
-  }
+  }*/
 
   .about-us,
   .about-us-2,
