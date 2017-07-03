@@ -63,8 +63,10 @@ app = {
 
 
 $(window).scroll(function() {
-  var scrollTop = $(window).scrollTop(),
-    windowHeight = scrollTop + $(window).height(),
+  var $window = $(this),
+    scrollTop = $window.scrollTop(),
+    scrollBottom = $window.scrollTop() + $window.height(),
+    windowHeight = scrollTop + $window.height(),
     $footer = $('footer'),
     footerTop = $footer.offset().top,
     footerHeight = footerTop + $footer.height();
@@ -85,13 +87,17 @@ $(window).scroll(function() {
           .textillate({in: {
               effect: 'fadeInUp',
               sync: true,
-              delay: 5
+              delay: 50
             }});
 
         if ($hr.length > 0) {
-          $hr.animate({'width': '100%'}, 800, function() { $fn });
+          $hr.animate({'width': '100%'}, 800, function() {
+            $section.find('.warmup-container').animate({left: '0px'}, 'fast', function() {
+              $fn;
+            });
+          });
         } else {
-          $fn();
+          $fn;
         }
 
         return false;
@@ -101,10 +107,9 @@ $(window).scroll(function() {
   //animates contact us in footer
   if ((footerHeight >= scrollTop)
     && (footerTop <= windowHeight)
-    && (footerHeight <= windowHeight)
     && (footerTop >= scrollTop)) {
-      $footer.animate({'padding-top': '30px'}, 800)
-        .animate({'padding-bottom': '30px'}, 800);
+      $footer.animate({'padding-top': '30px'}, 800);
+      $footer.animate({'padding-bottom': '30px'}, 800);
   }
 });
 
@@ -125,6 +130,9 @@ $(document).ready(function() {
     index(function() {
       $('body').addClass('is-loaded');
       app.state.isLoaded = true;
+
+      $('.warmup-container').css({left: '2000px'});
+
       home();
     });
   }

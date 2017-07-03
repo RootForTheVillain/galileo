@@ -14,6 +14,7 @@ body {
   background-color: #fff;
   font-family: "Segoe UI Light", "Open Sans Light", Arial, sans-serif;
   height: 100%;
+  overflow-x: hidden;
 }
 
 .separator {
@@ -199,6 +200,10 @@ address {
 }
 
 /* -- Splash -- */
+.warmup-container {
+    position: relative;
+}
+
 .warmup-square {
   width: 278px;
   float: left;
@@ -247,8 +252,8 @@ address {
   font-weight: bold;
   text-shadow: 0 0 4px rgba(0,0,0,0.4);
   color: #fff;
-  width: 50%;
-  padding: 10% 25px;
+  width: 278px;
+  padding: 6% 25px;
   position: absolute;
   top: 0;
   z-index: 2;
