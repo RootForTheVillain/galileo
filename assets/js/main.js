@@ -63,39 +63,49 @@ app = {
 
 
 $(window).scroll(function() {
-  var $scrollTop = $(window).scrollTop(),
-    $windowHeight = $scrollTop + $(window).height(),
+  var scrollTop = $(window).scrollTop(),
+    windowHeight = scrollTop + $(window).height(),
     $footer = $('footer'),
-    $footerTop = $footer.offset().top,
-    $footerHeight = $footerTop + $footer.height();
+    footerTop = $footer.offset().top,
+    footerHeight = footerTop + $footer.height();
 
   $('.homepage-section').each(function() {
     var $section = $(this),
-      $hr = $section.children('hr');
+      $hr = $section.find('.separator hr'),
+      $elem = ($hr.length > 0) ? $hr: $section,
+      elemTop = $elem.offset().top,
+      elemHeight = elemTop + $elem.height();
 
-    if ($hr.length > 0) {
-      var $elemTop = $hr.offset().top,
-        $elemHeight = $elemTop + $hr.height();
+    if ((elemHeight >= scrollTop)
+      && (elemTop <= windowHeight)
+      && (elemHeight <= windowHeight)
+      && (elemTop >= scrollTop)) {
+        var $fn = $section.find('[class*="-text"]')
+          .textillate({in: {
+              effect: 'fadeInUp',
+              sync: true,
+              delay: 5
+            }});
 
-      if (($elemHeight >= $scrollTop)
-        && ($elemTop <= $windowHeight)
-        && ($elemHeight <= $windowHeight)
-        && ($elemTop >= $scrollTop)) {
-          $section.find('[class*="-text"]')
-            .textillate({in: {effect: 'fadeInUp', sync: true, delay: 10}});
+        if ($hr.length > 0) {
+          $hr.animate({'width': '100%'}, 800, function() {
+            $fn();
+          });
+        } else {
+          $fn();
+        }
 
-          $hr.animate({'width': '100%'}, 700);
-      }
+        return false;
     }
-
   });
 
   //animates contact us in footer
-  if (($footerHeight >= $scrollTop)
-    && ($footerTop <= $windowHeight)
-    && ($footerHeight <= $windowHeight)
-    && ($footerTop >= $scrollTop)) {
-      $footer.animate({'padding-top': '30px', 'padding-bottom': '30px'}, 800);
+  if ((footerHeight >= scrollTop)
+    && (footerTop <= windowHeight)
+    && (footerHeight <= windowHeight)
+    && (footerTop >= scrollTop)) {
+      $footer.animate({'padding-top': '30px'}, 800)
+        .animate({'padding-bottom': '30px'}, 800);
   }
 });
 
@@ -203,7 +213,8 @@ function home(cb) {
   if ($(window).width() <= 768)
     return;
 
-  $('[class*="-text"]').css('visibility', 'hidden');
+  //$('[class*="-text"]').css('visibility', 'hidden');
+
   $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
   var delay = 50;

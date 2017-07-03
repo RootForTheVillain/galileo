@@ -16,24 +16,12 @@ body {
   height: 100%;
 }
 
-.section-heading {
-  display: none;
-}
-
-/*.show-section,
-.splash-page section {
-  border-top: 1px solid #ccc;
-}*/
-
-/*.section-no-border-top section {
-  border-top: none !important;
-}*/
-
-.homepage-section {
+.separator {
   position: relative;
+  margin: 25px 0 25px 0;
 }
 
-.homepage-section hr {
+.separator hr {
   border-color: #ccc;
   width: 0%;
   position: absolute;
@@ -42,7 +30,6 @@ body {
   height: 2px;
 }
 
-.show-section-heading,
 .splash-page .section-heading {
   background-color: #fff;
   padding: 10px;
@@ -62,30 +49,29 @@ body {
   color: #000;
 }
 
-/*section:nth-child(0) {
-  margin-top: 0;
-  border-top: none;
+.splash-headlines .col-sm-padding {
+  padding-top: 0;
 }
 
-section:last-of-type {
-  margin-bottom: 0;
-}*/
+.splash-our-work .col-md-padding {
+  padding-top: 100px;
+}
 
 address {
   color: #BF8F02;
 }
 
-.col-no-gutter {
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
   padding-right: 0;
   padding-left: 0;
 }
 
-.row .no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-}
-.row .no-gutters > [class^="col-"],
-.row .no-gutters > [class*=" col-"] {
+.col-no-gutter {
   padding-right: 0;
   padding-left: 0;
 }
@@ -160,9 +146,10 @@ address {
 .navbar-default {
   background-color: transparent;
   border: none;
-  position: absolute;
+  margin-bottom: 0;
+  /*position: absolute;
   width: 100%;
-  z-index: 10000;
+  z-index: 10000;*/
 }
 
 .navbar-default .navbar-collapse,
@@ -213,13 +200,14 @@ address {
 
 /* -- Splash -- */
 .warmup-square {
-  width: 50%;
-  height: 278px;
+  width: 278px;
   float: left;
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
   font-size: 1.6em;
+  margin: 5px;
+  overflow: hidden;
 }
 
 .warmup-square-img {
@@ -272,22 +260,11 @@ address {
   opacity: 1;
 }
 
-.splash-content {
-  padding: 175px 50px 50px 50px;
-  font-size: 2.3em;
-  line-height: 1.5em;
-  margin-bottom: 200px;
-}
-
-.splash-content h2 {
-  font-size: .7em;
-  margin-top: 50px;
-}
-
 .splash-square {
   background-color: #666;
   position: relative;
   overflow: hidden;
+  height: 278px;
 }
 
 .splash-square-img {
@@ -361,7 +338,7 @@ address {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-}*/
+}
 
 .col-logo,
 .col-nologo {
@@ -371,26 +348,22 @@ address {
 .col-nologo {
   padding-top: 0;
   top: 50px;
-}
+}*/
 
 .col-lg-padding {
-  padding: 200px 50px 50px 50px;
+  padding: 200px 50px 0 50px;
 }
 
 .col-md-padding {
-  padding: 150px 50px 50px 50px;
+  padding: 150px 50px 0 50px;
 }
 
 .col-sm-padding {
-  padding: 75px 50px 50px 50px;
-}
-
-.col-solid-bg {
-  background-color: #fff;
+  padding: 75px 50px 0 50px;
 }
 
 .col-no-top-padding {
-  padding: 0 50px 50px 50px;
+  padding: 0 50px 0 50px;
 }
 
 /*-- Headlines --*/
@@ -457,12 +430,14 @@ address {
   background-size: cover;
 }
 
-.about-us {
-  background: url(../images/lute.jpg) no-repeat right top;
+.about-us-lute {
+  background: url(../images/Page-Divide-Lute-BW1920.jpg) no-repeat #000;
+  color: #fff;
 }
 
-.about-us-2 {
-  background: url(../images/constellation-bw.jpg) no-repeat right top;
+.about-us-constellation {
+  background: url(../images/Page-Divide-Constellation-BW1920.jpg) no-repeat right #000;
+  color: #fff;
 }
 
 .contact-us {

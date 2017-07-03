@@ -64,7 +64,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand router-link" href="#home">
+      <a class="navbar-brand" href="/">
         <img src="assets/images/Galileo_Logo.png" width="158" height="68" alt="Galileo Insights">
       </a>
     </div>
@@ -95,11 +95,13 @@
 * Elements in interior pages specified with "data-content"
 * and with class="homepage-section" will appear on homepage.
 -->
-<div data-include="content" class="container-fluid">
-  <div id="home" data-content="home" data-callback="home,setActiveMenuItem"></div>
+<div data-include="content">
+  <div data-content="about-us" data-filter=".lute" class="splash-page"></div>
+  <!--<div data-content="home" data-callback="home,setActiveMenuItem" class="container-fluid"></div>-->
+  <div data-content="home" class="splash-page"></div>
+  <div data-content="about-us" data-filter=".constellation" class="splash-page"></div>
   <div data-content="our-work" data-filter=".homepage-section" class="splash-page splash-our-work"></div>
   <div data-content="headlines" data-filter=".homepage-section" class="splash-page splash-headlines"></div>
-  <div data-content="about-us" data-filter=".homepage-section" class="splash-page splash-about-us"></div>
 </div>
 
 <footer class="footer">
