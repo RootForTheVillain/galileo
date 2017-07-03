@@ -62,6 +62,42 @@ app = {
 
 
 
+$(window).scroll(function() {
+  var $scrollTop = $(window).scrollTop(),
+    $windowHeight = $scrollTop + $(window).height(),
+    $footer = $('footer'),
+    $footerTop = $footer.offset().top,
+    $footerHeight = $footerTop + $footer.height();
+
+  // Animates <hr>s on homepage
+  $('.homepage-section hr').each(function() {
+    var $this = $(this),
+      $elemTop = $this.offset().top,
+      $elemHeight = $elemTop + $this.height();
+
+    if (($elemHeight >= $scrollTop)
+      && ($elemTop <= $windowHeight)
+      && ($elemHeight <= $windowHeight)
+      && ($elemTop >= $scrollTop)) {
+        $this.animate({'width': '100%'}, 800, function() {
+          //$('.scroll-hook').textillate({in: { effect: 'fadeInUp', sync: true }});
+        });
+    }
+  });
+
+  //animates contact us in footer
+  if (($footerHeight >= $scrollTop)
+    && ($footerTop <= $windowHeight)
+    && ($footerHeight <= $windowHeight)
+    && ($footerTop >= $scrollTop)) {
+      $footer.animate({'padding-top': '30px', 'padding-bottom': '30px'}, 2500, function() {
+        console.log('done')
+      });
+  }
+});
+
+
+
 $(document).ready(function() {
 
   /**
@@ -78,6 +114,7 @@ $(document).ready(function() {
     index(function() {
       $('body').addClass('is-loaded');
       app.state.isLoaded = true;
+      home();
     });
   }
 });
@@ -153,11 +190,11 @@ function index(cb) {
 
     load($this, pathToLoad, function() {
       app.runCallbacks($this);
+
+      if (cb && typeof cb === 'function')
+        cb();
     });
   });
-
-  if (cb && typeof cb === 'function')
-    cb();
 }
 
 function home(cb) {

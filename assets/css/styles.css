@@ -20,13 +20,26 @@ body {
   display: none;
 }
 
-.show-section,
+/*.show-section,
 .splash-page section {
   border-top: 1px solid #ccc;
+}*/
+
+/*.section-no-border-top section {
+  border-top: none !important;
+}*/
+
+.homepage-section {
+  position: relative;
 }
 
-.section-no-border-top section {
-  border-top: none !important;
+.homepage-section hr {
+  border-color: #ccc;
+  width: 0%;
+  position: absolute;
+  top: -22px;
+  left: 0;
+  height: 2px;
 }
 
 .show-section-heading,
@@ -39,6 +52,7 @@ body {
   font-size: 1.1em;
   color: #000;
   display: inline;
+  z-index: 2;
 }
 
 .show-section-heading:hover,
