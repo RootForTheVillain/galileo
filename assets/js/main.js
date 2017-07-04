@@ -62,59 +62,6 @@ app = {
 
 
 
-$(window).scroll(function() {
-  var $window = $(this),
-    scrollTop = $window.scrollTop(),
-    scrollBottom = $window.scrollTop() + $window.height(),
-    windowHeight = scrollTop + $window.height(),
-    $footer = $('footer'),
-    footerTop = $footer.offset().top,
-    footerHeight = footerTop + $footer.height();
-
-  $('.homepage-section').each(function() {
-    var $fn,
-      $section = $(this),
-      $hr = $section.find('.separator hr'),
-      $elem = ($hr.length > 0) ? $hr: $section,
-      elemTop = $elem.offset().top,
-      elemHeight = elemTop + $elem.height();
-
-    if ((elemHeight >= scrollTop)
-      && (elemTop <= windowHeight)
-      && (elemHeight <= windowHeight)
-      && (elemTop >= scrollTop)) {
-        $fn = $section.find('[class*="-text"]')
-          .textillate({in: {
-              effect: 'fadeInUp',
-              sync: true,
-              delay: 50
-            }});
-
-        if ($hr.length > 0) {
-          $hr.animate({'width': '100%'}, 800, function() {
-            $section.find('.warmup-container').animate({left: '0px'}, 'fast', function() {
-              $fn;
-            });
-          });
-        } else {
-          $fn;
-        }
-
-        return false;
-    }
-  });
-
-  //animates contact us in footer
-  if ((footerHeight >= scrollTop)
-    && (footerTop <= windowHeight)
-    && (footerTop >= scrollTop)) {
-      $footer.animate({'padding-top': '30px'}, 800);
-      $footer.animate({'padding-bottom': '30px'}, 800);
-  }
-});
-
-
-
 $(document).ready(function() {
   /**
    * Handles refreshes on partials
@@ -130,10 +77,8 @@ $(document).ready(function() {
     index(function() {
       $('body').addClass('is-loaded');
       app.state.isLoaded = true;
-
-      $('.warmup-container').css({left: '2000px'});
-
       home();
+      setActiveMenuItem(location.hash);
     });
   }
 });
@@ -220,31 +165,50 @@ function home(cb) {
   if ($(window).width() <= 768)
     return;
 
-  //$('[class*="-text"]').css('visibility', 'hidden');
+  $('[class*="-text"]').css('visibility', 'hidden');
+  $('.warmup-container').css({left: '2000px'});
 
   $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
-  var delay = 50;
-  $('.splash-square-img').css({filter: 'grayscale(0)'}).each(function() {
-    var $this = $(this);
+  // Animate footer when scrolled to
+  $('footer h2').waypoint(function(direction) {
+    if (direction === 'up')
+      return;
 
-    setTimeout(function() {
-      $this.animate({'top': '0'}, 'slow', function() {
-        for (var i = 0; i <= 100; i++) {
-          setTimeout(function() {
-            $this.css('filter', 'grayscale(' + i + '%)');
-          }, 250);
-        }
-      });
-    }, delay);
-
-    delay += 200;
+    $(this.element).animate({'padding-top': '75px', 'padding-bottom': '75px'}, 'slow');
+  }, {
+    offset: '90%'
   });
 
-  $('.splash-square a.router-link').textillate({in: { effect: 'fadeInUp', sync: true }});
+  // Animate each homepage section
+  $('.homepage-section').waypoint(function(direction) {
+    if (direction === 'up')
+      return;
 
-  if (cb && typeof cb === 'function')
+    var $section = $(this.element),
+      $hr = $section.find('.separator hr');
+
+    $fn = function() {
+      $section.find('[class*="-text"]').textillate({in: {
+        effect: 'fadeInUp',
+        sync: true,
+        delay: 0
+      }});
+      $section.find('.warmup-container').animate({left: '0px'}, 'slow');
+    }
+
+    if ($hr.length > 0) {
+      $hr.animate({'width': '100%'}, 800, $fn);
+    } else {
+      $fn();
+    }
+  }, {
+    offset: '90%'
+  });
+
+  if (cb && typeof cb === 'function') {
     cb();
+  }
 }
 
 function setActiveMenuItem(hash) {
