@@ -74,11 +74,27 @@ $(document).ready(function() {
   }
 
   if (!app.state.isLoaded) {
+    //var $footer = $('footer');
+    //$footer.css('display', 'none');
+
     index(function() {
       $('body').addClass('is-loaded');
       app.state.isLoaded = true;
-      home();
-      setActiveMenuItem(location.hash);
+      //$footer.fadeIn('fast');
+      home(function() {
+        
+        // Animate footer when scrolled to
+        $('footer h2').waypoint(function(direction) {
+          if (direction === 'up')
+            return;
+
+          $(this.element).animate({'padding-top': '75px', 'padding-bottom': '75px'}, 1000);
+        }, {
+          offset: '100%'
+        });
+
+        setActiveMenuItem(location.hash);
+      });
     });
   }
 });
@@ -136,10 +152,10 @@ function index(cb) {
       $(this).toggleClass('active');
   });
 
-  $('button.navbar-toggle').click(function(e) {
+  /*$('button.navbar-toggle').click(function(e) {
     e.stopPropagation();
     toggleMenu();
-  });
+  });*/
 
   /**
     * Interior page elements with class="homepage-section"
@@ -170,37 +186,27 @@ function home(cb) {
 
   $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
-  // Animate footer when scrolled to
-  $('footer h2').waypoint(function(direction) {
-    if (direction === 'up')
-      return;
-
-    $(this.element).animate({'padding-top': '75px', 'padding-bottom': '75px'}, 'slow');
-  }, {
-    offset: '90%'
-  });
-
   // Animate each homepage section
   $('.homepage-section').waypoint(function(direction) {
     if (direction === 'up')
       return;
 
     var $section = $(this.element),
-      $hr = $section.find('.separator hr');
+      $hr = $section.find('.separator hr'),
+      fn = function() {
+        $section.find('[class*="-text"]').textillate({in: {
+          effect: 'fadeInUp',
+          sync: true,
+          delay: 0
+        }});
 
-    $fn = function() {
-      $section.find('[class*="-text"]').textillate({in: {
-        effect: 'fadeInUp',
-        sync: true,
-        delay: 0
-      }});
-      $section.find('.warmup-container').animate({left: '0px'}, 'slow');
-    }
+        $section.find('.warmup-container').animate({left: '0px'}, 'slow');
+      };
 
     if ($hr.length > 0) {
-      $hr.animate({'width': '100%'}, 800, $fn);
+      $hr.animate({'width': '100%'}, 800, fn);
     } else {
-      $fn();
+      fn();
     }
   }, {
     offset: '90%'
