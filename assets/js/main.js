@@ -73,6 +73,10 @@ $(document).ready(function() {
     });
   }
 
+  $('.navbar-toggle').on('hidden.bs.collapse', function (e) {
+      console.log('Event fired on #' + e.currentTarget.id);
+  })  
+
   if (!app.state.isLoaded) {
 
     index(function() {
@@ -185,20 +189,26 @@ function home(cb) {
    * Parallax scrolling effect for header
    */
   var _state = 0;
+  console.log('a ' + _state)
   $('[data-include="content"] div:first').waypoint(function(direction) {
     var $nav = $('nav.navbar');
     if (_state === 0 && direction === 'up') {
         _state = 1;
+          console.log('b ' + _state)
         $nav.animate({top: '0px'}, 'fast', function() {
           _state = 0;
+            console.log('c ' + _state)
         });
     } else if (_state === 0 && direction === 'down') {
       _state = 1;
+      console.log('d ' + _state)
       $nav.animate({top: '-150px'}, 'slow', function() {
         _state = 0;
+        console.log('e ' + _state)
       });
     }
   }, {continuous: false});
+  console.log('f ' + _state)
 
   /**
    * Animate each homepage <section>
@@ -250,6 +260,9 @@ function setActiveMenuItem(hash) {
     }
   });
 }
+
+
+
 /*
 function toggleMenu() {
   var delay,

@@ -58,9 +58,61 @@ address {
 }
 
 /* -- Main menu -- */
-.navbar-default {
-    background-color: #fff;
+#navbar {
+  background: url(../images/old-detroit-background.jpg) #fff no-repeat;
+  background-size: cover;
+}
+
+#navbar .container-fluid {
+  width: 40%;
+  padding: 0;
+}
+
+.navbar-default,
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
     border: none;
+    background-color: #fff;
+}
+
+.navbar-fixed-bottom .navbar-collapse,
+.navbar-fixed-top .navbar-collapse {
+    max-height: none;
+}
+
+.navbar-nav {
+  margin: 0 !important;
+  background-color: #fff;
+  height: 100%;
+  min-height: 100%;
+  padding-bottom: 25%;
+}
+
+.navbar-default .navbar-nav>li {
+  margin: 10%;
+  font-size: 350%;
+}
+
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:active,
+.navbar-default .navbar-nav>li>a:focus {
+  color: #404040;
+}
+
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>li.active,
+.navbar-default .navbar-nav>li.active>a:hover,
+.navbar-default .navbar-nav>li>a:hover {
+  color: #BF8F02;
+  background-color: #fff;
+}
+
+.navbar-default .navbar-nav>li.active>a {
+  background-color: #fff;
 }
 
 .navbar-toggle {
@@ -586,7 +638,8 @@ footer h2>.btn-default:hover {
         float: none;
     }
     .navbar-left,.navbar-right {
-        float: none !important;
+        /*float: none !important;*/
+        float: none;
     }
     .navbar-toggle {
         display: block;
