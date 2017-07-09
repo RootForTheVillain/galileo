@@ -110,7 +110,7 @@ function load(target, pathToLoad, cb) {
 
   target = (!target) ? 'div[data-include]': target;
 
-  app.history.add(document.location.hash);
+  //app.history.add(document.location.hash);
 
   $(target).load(pathToLoad, function() {
 
@@ -124,17 +124,16 @@ function load(target, pathToLoad, cb) {
       e.stopPropagation();
 
       load('div[data-include]', path, function() {
+        $('#navbar').collapse('hide');
+        $('.navbar-toggle').removeClass('active');
         app.runCallbacks($this);
-        $.smoothScroll({scrollTarget: 'a[name="top"]'});
+        $.smoothScroll({scrollTarget: 'body'});
         setActiveMenuItem(app.getHash());
       });
     });
 
     if (cb && typeof cb === 'function')
       cb();
-
-    /*if (app.state.menu === 'open')
-      toggleMenu();*/
   });
 }
 
@@ -152,11 +151,6 @@ function index(cb) {
   $('.navbar-toggle').click(function() {
       $(this).toggleClass('active');
   });
-
-  /*$('button.navbar-toggle').click(function(e) {
-    e.stopPropagation();
-    toggleMenu();
-  });*/
 
   /**
     * Interior page elements with class="homepage-section"
@@ -195,17 +189,13 @@ function home(cb) {
     var $nav = $('nav.navbar');
     if (_state === 0 && direction === 'up') {
         _state = 1;
-        $('body').animate({'padding-top': '80px'}, 'fast', function() {
-          $nav.animate({top: '0px'}, 'fast', function() {
-            _state = 0;
-          });
+        $nav.animate({top: '0px'}, 'fast', function() {
+          _state = 0;
         });
     } else if (_state === 0 && direction === 'down') {
       _state = 1;
       $nav.animate({top: '-150px'}, 'slow', function() {
-        $('body').animate({'padding-top': '0'}, 'slow', function() {
-          _state = 0;
-        });
+        _state = 0;
       });
     }
   }, {continuous: false});
