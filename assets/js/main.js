@@ -86,7 +86,7 @@ $(document).ready(function() {
           if (direction === 'up')
             return;
 
-          $(this.element).animate({'padding-top': '75px', 'padding-bottom': '75px'}, 1000);
+          $(this.element).animate({'padding-top': '100px', 'padding-bottom': '100px'}, 1000);
 
           // Remove event handler since this only needs to fire once
           this.destroy();
@@ -182,7 +182,7 @@ function home(cb) {
   if ($(window).width() <= 768)
     return;
 
-  $('[class*="-text"]').css('visibility', 'hidden');
+  $('.splash-page [class*="-text"]').css('visibility', 'hidden');
   $('.warmup-container').css({left: '2000px'});
 
   $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
@@ -235,7 +235,7 @@ function home(cb) {
       fn();
     }
 
-    // Remove event handler since this only needs to fire once    
+    // Remove event handler since this only needs to fire once
     this.destroy();
   }, {
     offset: '90%'
