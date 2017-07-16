@@ -15,7 +15,8 @@ body {
   font-family: "Segoe UI Light", "Open Sans Light", Arial, sans-serif;
   /*height: 100%;*/
   overflow-x: hidden;
-  padding-top: 80px;
+  /*padding-top: 80px;*/
+  padding-top: 125px;
 }
 
 .section-margins {
@@ -29,11 +30,20 @@ body {
 
 .separator hr {
   border-color: #ccc;
-  width: 0%;
+  width: 100%;
   position: absolute;
   top: -22px;
   left: 0;
   height: 2px;
+}
+
+.separator span {
+  padding: 0 5px;
+  background-color: #fff;
+  position: relative;
+  top: -15px;
+  z-index: 2;
+  margin-left: 50px;
 }
 
 address {
@@ -163,19 +173,15 @@ address {
 
 
 /* -- Splash -- */
-.splash-page .section-heading {
-  background-color: #fff;
-  padding: 10px;
-  margin-left: 50px;
-  position: relative;
-  top: -15px;
+.section-heading {
+  background-color: #ccc;
+  padding: 2px 50px;
   font-size: 1.1em;
   color: #000;
   display: inline;
-  z-index: 2;
 }
 
-.splash-page .section-heading:hover {
+.section-heading:hover {
   text-decoration: none;
   cursor: default;
   color: #000;
@@ -330,11 +336,13 @@ address {
 }
 
 .col-md-padding {
-  padding: 150px 50px 0 50px;
+  padding: 150px 50px 70px 50px;
+  /*padding: 100px 25px 25px 25px;*/
 }
 
 .col-sm-padding {
   padding: 75px 50px 0 50px;
+  /*padding: 50px 25px 25px 25px;*/
 }
 
 /*-- Portfolio & Headlines --*/
@@ -574,15 +582,6 @@ footer h2>.btn-default:hover {
 
   .splash-content {
     margin: 0;
-  }
-
-  .col-logo,
-  .col-md-padding {
-    padding: 100px 25px 25px 25px;
-  }
-
-  .col-sm-padding {
-    padding: 50px 25px 25px 25px;
   }
 
   .portfolio .warmup-square {

@@ -75,7 +75,7 @@ $(document).ready(function() {
 
   $('.navbar-toggle').on('hidden.bs.collapse', function (e) {
       console.log('Event fired on #' + e.currentTarget.id);
-  })  
+  })
 
   if (!app.state.isLoaded) {
 
@@ -182,7 +182,7 @@ function home(cb) {
 
   $('.splash-page [class*="-text"]').css('visibility', 'hidden');
   $('.warmup-container').css({left: '2000px'});
-
+  $('.homepage-section .separator hr').width('0');
   $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
 
   /**
