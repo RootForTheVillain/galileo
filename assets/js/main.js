@@ -128,6 +128,9 @@ function load(target, pathToLoad, cb) {
       e.stopPropagation();
 
       load('div[data-include]', path, function() {
+        $('.text-fadeIn').css('visibility', 'hidden');
+        $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
+
         $('#navbar').collapse('hide');
         $('.navbar-toggle').removeClass('active');
         app.runCallbacks($this);

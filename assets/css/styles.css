@@ -407,9 +407,33 @@ address {
   height: 675px;
 }
 
+.state-of-mi-bg {
+  background: url(../images/Slide_01_no_text.jpg) no-repeat right;
+  color: #fff;
+  background-size: cover;
+}
+
+.state-of-mi-adaptive {
+  background: url(../images/Slide_02_no_text.jpg) no-repeat top right;
+  background-size: cover;
+  padding-bottom: 300px;
+}
+
+.state-of-mi-mobile-first {
+  background: url(../images/Slide_04small.jpg) no-repeat right;
+  background-size: auto;
+}
+
+.state-of-mi-responsive {
+  background: url(../images/Slide_03Small.jpg) no-repeat right;
+  background-size: cover;
+}
+
 /** -- Overrides homepage styles for interior pages -- **/
 #about-us .about-us-lute,
-#about-us .about-us-constellation {
+#about-us .about-us-constellation,
+#state-of-mi .state-of-mi-mobile-first,
+#state-of-mi .state-of-mi-responsive {
   background-color: #fff;
   margin-left: -15px;
   margin-right: -15px;
@@ -417,10 +441,21 @@ address {
 }
 
 #about-us .about-us-lute .container-fluid .col-md-5,
-#about-us .about-us-constellation .col-md-5 {
+#about-us .about-us-constellation .col-md-5,
+#state-of-mi .state-of-mi-mobile-first .col-md-5,
+#state-of-mi .state-of-mi-responsive .col-md-5 {
   background-color: #fff;
   width: 45%;
   color: #000;
+}
+
+#state-of-mi .state-of-mi-mobile-first .col-md-5,
+#state-of-mi .state-of-mi-responsive .col-md-5 {
+  padding-bottom: 125px;
+}
+
+#state-of-mi .separator {
+  margin: 0;
 }
 
 .interior-page .separator {
