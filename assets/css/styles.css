@@ -467,6 +467,10 @@ address {
   background-size: 55%;
 }
 
+#success_message {
+  display: none;
+}
+
 .headlines-background {
   background: url(../images/headlines-background.jpg) no-repeat right top;
   background-size: 55%;
@@ -622,24 +626,6 @@ footer h2>.btn-default:hover {
   .portfolio .warmup-square {
     height: auto;
   }
-
-  /*.portfolio-desc {
-    padding: 0;
-    width: 100%;
-  }
-
-  .headline {
-    clear: none;
-  }
-
-  .headline-desc {
-    width: 100%;
-    float: none;
-  }
-
-  .headline img {
-    float: none;
-  }*/
 
   .about-us,
   .about-us-2,

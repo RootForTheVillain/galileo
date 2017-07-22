@@ -73,10 +73,6 @@ $(document).ready(function() {
     });
   }
 
-  $('.navbar-toggle').on('hidden.bs.collapse', function (e) {
-      console.log('Event fired on #' + e.currentTarget.id);
-  })
-
   if (!app.state.isLoaded) {
 
     index(function() {
@@ -93,7 +89,7 @@ $(document).ready(function() {
           $(this.element).animate({'padding-top': '100px', 'padding-bottom': '100px'}, 1000);
 
           // Remove event handler since this only needs to fire once
-          this.destroy();
+          //this.destroy();
         }, {
           offset: '100%'
         });
@@ -136,6 +132,12 @@ function load(target, pathToLoad, cb) {
         app.runCallbacks($this);
         $.smoothScroll({scrollTarget: 'body'});
         setActiveMenuItem(app.getHash());
+
+        switch (app.getHash()) {
+          case '#contact-us':
+            contactUs();
+          break;
+        }
       });
     });
 
@@ -247,6 +249,18 @@ function home(cb) {
   if (cb && typeof cb === 'function') {
     cb();
   }
+}
+
+function contactUs() {
+  console.log('contactUs called')
+  $('#contact-us-form').validator().on('submit', function (e) {
+    if (e.isDefaultPrevented()) {
+      // handle the invalid form...
+    } else {
+      // everything looks good!
+      $('#success_message').fadeIn('fast');
+    }
+  })
 }
 
 function setActiveMenuItem(hash) {
