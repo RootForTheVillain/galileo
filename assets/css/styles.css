@@ -337,12 +337,14 @@ address {
 
 .col-md-padding {
   padding: 150px 50px 70px 50px;
-  /*padding: 100px 25px 25px 25px;*/
 }
 
 .col-sm-padding {
   padding: 75px 50px 0 50px;
-  /*padding: 50px 25px 25px 25px;*/
+}
+
+.col-xs-padding {
+  padding: 55px 50px 0 50px;
 }
 
 /*-- Portfolio & Headlines --*/
@@ -373,7 +375,12 @@ address {
   box-shadow: 5px 5px 11px -4px rgba(0,0,0,0.36);
   border: 1px solid #ccc;
   float: left;
+  position: relative;
   margin: 0 0 25px 0;
+}
+
+.megatrends .gallery-item {
+  float: none;
 }
 
 /*-- Page background images --*/
@@ -449,13 +456,24 @@ address {
   color: #000;
 }
 
+#about-us .about-us-lute .container-fluid .col-md-5,
+#about-us .about-us-constellation .col-md-5,
 #state-of-mi .state-of-mi-mobile-first .col-md-5,
 #state-of-mi .state-of-mi-responsive .col-md-5 {
   padding-bottom: 125px;
 }
 
+#about-us .separator,
 #state-of-mi .separator {
   margin: 0;
+}
+
+#home {
+  margin-bottom: 75px;
+}
+
+#what-we-do #home {
+  margin-bottom: 0;
 }
 
 .interior-page .separator {

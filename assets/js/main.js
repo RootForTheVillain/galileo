@@ -1,27 +1,10 @@
 app = {
-  history: {
-    _history: [],
-    add: function(location) {
-      this._history.push(location);
-    },
-    getPrevious: function() {
-      if (this._history.length < 2)
-        return null;
-
-      var index = this._history.length - 2,
-        location = this._history.slice(index, index + 1).pop();
-
-      return location;
-    },
-    back: function() {
-      var location = this.getPrevious();
-      if (location != null) {
-          loadPartial(location);
-      }
-    }
+  header: {
+    waypoint: []
   },
   state: {
     menu: 'closed',
+    footer: 'closed',
     isLoaded: false
   },
   getHash: function() {
@@ -30,33 +13,6 @@ app = {
   getPathFromHash: function(hash) {
     return (hash == '/') ? hash:
       hash.replace('#', '') + '.html';
-  },
-  getCallbacks: function($elem) {
-    var arr,
-      cb = $elem.data('callback'),
-      callbacks;
-
-    if (cb) {
-      arr = cb.split(',');
-      callbacks = {};
-
-      for (var i = 0; i < arr.length; i++) {
-        if (typeof window[arr[i]] === 'function') {
-          callbacks[arr[i]] = window[arr[i]];
-        }
-      }
-    }
-    return callbacks;
-  },
-  runCallbacks: function($elem) {
-    var callbacks = this.getCallbacks($elem);
-    if (callbacks && typeof callbacks === 'object') {
-      for (var key in callbacks) {
-        if (callbacks.hasOwnProperty(key)) {
-          callbacks[key].call();
-        }
-      }
-    }
   }
 };
 
@@ -73,31 +29,24 @@ $(document).ready(function() {
     });
   }
 
-  if (!app.state.isLoaded) {
+  index(function() {
+    $('body').addClass('is-loaded');
+    app.state.isLoaded = true;
 
-    index(function() {
-      $('body').addClass('is-loaded');
-      app.state.isLoaded = true;
+    /**
+      * Interior page elements with class="homepage-section"
+      * will appear on homepage
+      */
+    $('div[data-content]').each(function() {
+      var $this = $(this),
+        filename = ($this.data('content') == '/') ? $this.data('content'):
+          $this.data('content') + '.html',
+        filter = $this.data('filter'),
+        pathToLoad = (filter) ? filename + ' ' + filter: filename;
 
-      home(function() {
-
-        // Animate footer when scrolled to
-        $('footer h2').waypoint(function(direction) {
-          if (direction === 'up')
-            return;
-
-          $(this.element).animate({'padding-top': '100px', 'padding-bottom': '100px'}, 1000);
-
-          // Remove event handler since this only needs to fire once
-          //this.destroy();
-        }, {
-          offset: '100%'
-        });
-
-        setActiveMenuItem(location.hash);
-      });
+      load($this, pathToLoad);
     });
-  }
+  });
 });
 
 /**
@@ -110,8 +59,6 @@ function load(target, pathToLoad, cb) {
 
   target = (!target) ? 'div[data-include]': target;
 
-  //app.history.add(document.location.hash);
-
   $(target).load(pathToLoad, function() {
 
     $('.router-link').off('click').click(function(e) {
@@ -121,27 +68,44 @@ function load(target, pathToLoad, cb) {
         path = app.getPathFromHash(href),
         anchor = href.replace(/\/?#/, '');
 
+
       e.stopPropagation();
 
-      load('div[data-include]', path, function() {
-        $('.text-fadeIn').css('visibility', 'hidden');
-        $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
-
-        $('#navbar').collapse('hide');
-        $('.navbar-toggle').removeClass('active');
-        app.runCallbacks($this);
-        $.smoothScroll({scrollTarget: 'body'});
-        setActiveMenuItem(app.getHash());
-
-        switch (app.getHash()) {
-          case '#contact-us':
-            contactUs();
-          break;
-        }
-      });
+      $('#navbar').collapse('hide');
+      $('.navbar-toggle').removeClass('active');
+      $.smoothScroll({scrollTarget: 'body', afterScroll: function() {
+        load('div[data-include]', path, function() {
+          setActiveMenuItem(app.getHash());
+        });
+      }});
     });
 
-    if (cb && typeof cb === 'function')
+    switch (app.getHash()) {
+      case '#what-we-do':
+        whatWeDo();
+      break;
+      case '#state-of-mi':
+        stateOfMi();
+      break;
+      case '#contact-us':
+        contactUs();
+      break;
+      case '#about-us':
+        stateOfMi();
+      break;
+      case '#headlines':
+      case '#our-work':
+        home();
+      break;
+      case '/':
+      case '#home':
+        home(function() {
+          setActiveMenuItem(location.hash);
+        });
+      break;
+    }
+
+    if (cb && typeof cb == 'function')
       cb();
   });
 }
@@ -162,67 +126,56 @@ function index(cb) {
   });
 
   /**
-    * Interior page elements with class="homepage-section"
-    * will appear on homepage
-    */
-  $('div[data-content]').each(function() {
-    var $this = $(this),
-      filename = ($this.data('content') == '/') ? $this.data('content'):
-        $this.data('content') + '.html',
-      filter = $this.data('filter'),
-      pathToLoad = (filter) ? filename + ' ' + filter: filename;
+   * Parallax scrolling effect for header
+   */
+   $('[data-include="content"] div:first').waypoint({group: 'header', handler: function(direction) {
+     var $nav = $('nav.navbar');
+     if (app.state.menu === 'closed' && direction === 'up') {
+         app.state.menu === 'open';
+         $nav.animate({top: '0px'}, 'fast', function() {
+           app.state.menu === 'closed';
+         });
+     } else if (app.state.menu === 'closed' && direction === 'down') {
+       app.state.menu === 'open';
+       $nav.animate({top: '-150px'}, 'slow', function() {
+         app.state.menu === 'closed';
+       });
+     }
+   }}, {continuous: false});
 
-    load($this, pathToLoad, function() {
-      app.runCallbacks($this);
-
-      if (cb && typeof cb === 'function')
-        cb();
-    });
+  // Animate footer when scrolled to
+  $('footer h2').waypoint(function(direction) {
+    if (direction === 'up' && app.state.footer === 'open') {
+      $(this.element).animate({'padding-top': '45px', 'padding-bottom': '45px'}, 1000);
+      app.state.footer = 'closed';
+    } else if (direction === 'down' && app.state.footer === 'closed') {
+      $(this.element).animate({'padding-top': '100px', 'padding-bottom': '100px'}, 1000);
+      app.state.footer = 'open';
+    }
+  }, {
+    offset: '100%'
   });
+
+  if (cb && typeof cb == 'function')
+    cb();
 }
 
 function home(cb) {
   if ($(window).width() <= 768)
     return;
 
-  $('.splash-page [class*="-text"]').css('visibility', 'hidden');
+  $('section [class*="-text"], .text-fadeIn').css('visibility', 'hidden');
   $('.warmup-container').css({left: '2000px'});
   $('.homepage-section .separator hr').width('0');
-  $('.text-fadeIn').textillate({in: { effect: 'fadeInUp', sync: true }});
-
-  /**
-   * Parallax scrolling effect for header
-   */
-  var _state = 0;
-  console.log('a ' + _state)
-  $('[data-include="content"] div:first').waypoint(function(direction) {
-    var $nav = $('nav.navbar');
-    if (_state === 0 && direction === 'up') {
-        _state = 1;
-          console.log('b ' + _state)
-        $nav.animate({top: '0px'}, 'fast', function() {
-          _state = 0;
-            console.log('c ' + _state)
-        });
-    } else if (_state === 0 && direction === 'down') {
-      _state = 1;
-      console.log('d ' + _state)
-      $nav.animate({top: '-150px'}, 'slow', function() {
-        _state = 0;
-        console.log('e ' + _state)
-      });
-    }
-  }, {continuous: false});
-  console.log('f ' + _state)
 
   /**
    * Animate each homepage <section>
    */
-  $('.homepage-section').waypoint(function(direction) {
+  $('.homepage-section [class*="-text"]:first-child').waypoint(function(direction) {
     if (direction === 'up')
       return;
 
-    var $section = $(this.element),
+    var $section = $(this.element).parents('section'),
       $hr = $section.find('.separator hr'),
       fn = function() {
         $section.find('[class*="-text"]').textillate({in: {
@@ -252,7 +205,7 @@ function home(cb) {
 }
 
 function contactUs() {
-  console.log('contactUs called')
+  home();
   $('#contact-us-form').validator().on('submit', function (e) {
     if (e.isDefaultPrevented()) {
       // handle the invalid form...
@@ -261,6 +214,86 @@ function contactUs() {
       $('#success_message').fadeIn('fast');
     }
   })
+}
+
+function whatWeDo() {
+  var $galleryItems = $('.gallery-item');
+  $galleryItems.css({left: '2000px'});
+
+  home();
+
+  $('section [class*="-text"]:first-child').waypoint(function(direction) {
+    if (direction === 'up')
+      return;
+
+    var $section = $(this.element).parents('section');
+    $section.find('[class*="-text"]').textillate({in: {
+      effect: 'fadeInUp',
+      sync: true,
+      delay: 0
+    }});
+
+    // Remove event handler since this only needs to fire once
+    this.destroy();
+  }, {
+    offset: '90%'
+  });
+
+  $('.megatrends').waypoint(function(direction) {
+    $galleryItems.animate({left: '0px'}, 'slow');
+    this.destroy();
+  }, {offset: '90%'});
+}
+
+function animateSections() {
+  $('section [class*="-text"]').css('visibility', 'hidden');
+
+  /**
+   * Animate each <section>
+   */
+  $('section [class*="-text"]:first-child').waypoint(function(direction) {
+    if (direction === 'up')
+      return;
+
+    var $section = $(this.element).parents('section');
+    $section.find('[class*="-text"]').textillate({in: {
+      effect: 'fadeInUp',
+      sync: true,
+      delay: 0
+    }});
+
+    // Remove event handler since this only needs to fire once
+    this.destroy();
+  }, {
+    offset: '90%'
+  });
+}
+
+function stateOfMi() {
+  $('section [class*="-text"]').css('visibility', 'hidden');
+  $('.animate-bg').css({backgroundPosition: '2000px'});
+
+  /**
+   * Animate each <section>
+   */
+  $('section [class*="-text"]:first-child').waypoint(function(direction) {
+    if (direction === 'up')
+      return;
+
+    var $section = $(this.element).parents('section');
+    $section.find('[class*="-text"]').textillate({in: {
+      effect: 'fadeInUp',
+      sync: true,
+      delay: 0
+    }});
+
+    $section.find('.animate-bg').animate({backgroundPosition: '0'}, 'slow');
+
+    // Remove event handler since this only needs to fire once
+    this.destroy();
+  }, {
+    offset: '90%'
+  });
 }
 
 function setActiveMenuItem(hash) {
@@ -277,44 +310,3 @@ function setActiveMenuItem(hash) {
     }
   });
 }
-
-
-
-/*
-function toggleMenu() {
-  var delay,
-      $menu = $('#main-menu-container'),
-      $wrapper = $('#main-menu-container .main-menu-wrapper');
-
-  if (app.state.menu === 'open') {
-    delay = 0;
-    $menu.find('li').each(function() {
-      var $this = $(this);
-      setTimeout(function() {
-        $this.animate({left: '1000px'}, 'fast');
-      }, delay);
-      delay += 75;
-    });
-
-    $wrapper.animate({backgroundPosition: '-900px'}, function() {
-      $menu.slideUp(100);
-    });
-    $('.navbar-toggle').removeClass('active');
-    app.state.menu = 'closed';
-
-  } else {
-
-    delay = 75;
-    $menu.slideDown(100, function() {
-      $wrapper.animate({backgroundPosition: '0px'});
-    }).find('li').each(function() {
-      delay += 50;
-      var $this = $(this);
-      setTimeout(function() {
-        $this.animate({left: '0px'}, 'fast');
-      }, delay);
-    });
-    $('.navbar-toggle').addClass('active');
-    app.state.menu = 'open';
-  }
-}*/
