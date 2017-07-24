@@ -45,6 +45,7 @@ $(document).ready(function() {
         pathToLoad = (filter) ? filename + ' ' + filter: filename;
 
       load($this, pathToLoad, function() {
+        // Hack to prevent footer from flashing when content initially loads
         $('div[data-include="content"]').css('height', 'auto').css('min-height', 'auto');
       });
     });
