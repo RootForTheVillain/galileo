@@ -13,9 +13,7 @@ html {
 body {
   background-color: #fff;
   font-family: "Segoe UI Light", "Open Sans Light", Arial, sans-serif;
-  /*height: 100%;*/
   overflow-x: hidden;
-  /*padding-top: 80px;*/
   padding-top: 125px;
 }
 
@@ -556,6 +554,11 @@ address {
 }
 
 /* -- Footer -- */
+
+div[data-include="content"] {
+  height: 1000px;
+  min-height: 1000px;
+}
 
 footer {
   color: #595959;

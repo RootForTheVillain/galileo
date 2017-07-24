@@ -44,7 +44,9 @@ $(document).ready(function() {
         filter = $this.data('filter'),
         pathToLoad = (filter) ? filename + ' ' + filter: filename;
 
-      load($this, pathToLoad);
+      load($this, pathToLoad, function() {
+        $('div[data-include="content"]').css('height', 'auto');
+      });
     });
   });
 });
@@ -71,6 +73,7 @@ function load(target, pathToLoad, cb) {
 
       e.stopPropagation();
 
+      // Close Main Menu, then scroll to top of page
       $('#navbar').collapse('hide');
       $('.navbar-toggle').removeClass('active');
       $.smoothScroll({scrollTarget: 'body', afterScroll: function() {
@@ -107,6 +110,7 @@ function load(target, pathToLoad, cb) {
 
     if (cb && typeof cb == 'function')
       cb();
+
   });
 }
 
@@ -143,7 +147,9 @@ function index(cb) {
      }
    }}, {continuous: false});
 
-  // Animate footer when scrolled to
+  /**
+   * Animate footer when scrolled to
+   */
   $('footer h2').waypoint(function(direction) {
     if (direction === 'up' && app.state.footer === 'open') {
       $(this.element).animate({'padding-top': '45px', 'padding-bottom': '45px'}, 1000);
