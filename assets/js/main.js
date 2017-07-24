@@ -45,7 +45,7 @@ $(document).ready(function() {
         pathToLoad = (filter) ? filename + ' ' + filter: filename;
 
       load($this, pathToLoad, function() {
-        $('div[data-include="content"]').css('height', 'auto');
+        $('div[data-include="content"]').css('height', 'auto').css('min-height', 'auto');
       });
     });
   });
