@@ -1,58 +1,67 @@
-<section>
+<section class="homepage-section">
   <div class="row">
 
-      <div class="col-md-5 col-md-padding">
-        <p class="lg-text">
-          Let's talk and see what we can do for you.
-        </p>
-        <p class="lg-text">
-          If nothing else, we'll meet someone new.
-        </p>
-        <p class="md-text">Contact Us</p>
+      <div class="col-md-5 col-sm-padding">
+        <p class="lg-text">Let's talk and see what we can do for you.</p>
+        <p class="lg-text">If nothing else, we'll meet someone new.</p>
+        <p class="md-text text-fadeIn">Contact Us</p>
       </div>
 
-      <form>
-        <div class="col-md-7 col-sm-padding">
+      <form id="contact-us-form" action="send_form_email.php" method="post" role="form" data-toggle="validator">
+        <div class="col-md-7 col-xs-padding">
 
           <div class="row">
             <div class="col-md-6 form-group">
-              <input type="firstName" class="form-control" id="firstName" placeholder="* First Name">
+              <input type="text" class="form-control" name="first_name" placeholder="* First Name" required>
             </div>
             <div class="col-md-6 form-group">
-              <input type="lastName" class="form-control" id="lastName" placeholder="* Last Name">
+              <input type="text" class="form-control" name="last_name" placeholder="* Last Name" required>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6 form-group">
-              <input type="company" class="form-control" id="company" placeholder="* Company">
+              <input type="text" class="form-control" id="company" placeholder="* Company" name="company" required>
             </div>
             <div class="col-md-6 form-group">
-              <input type="role" class="form-control" id="role" placeholder="* Role">
+              <input type="text" class="form-control" id="role" name="role" placeholder="* Role" required>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6 form-group">
-              <input type="email" class="form-control" name="email" placeholder="* Email">
+              <input name="email" placeholder="* Email" class="form-control" type="text" required>
             </div>
             <div class="col-md-6 form-group">
-              <input type="phone" class="form-control" name="phone" placeholder="* Phone Number">
+              <input type="text" class="form-control" name="phone" placeholder="* Phone Number" required>
             </div>
           </div>
           <p>
-            <textarea rows="10" cols="100" class="form-control"></textarea>
+            <textarea rows="10" cols="100" class="form-control" name="comments" required></textarea>
           </p>
-          <p>
-            <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
-          </p>
+          <!-- Success message -->
+          <div class="alert alert-success" role="alert" id="success_message">
+            Success <i class="glyphicon glyphicon-thumbs-up"></i>
+            Thanks for contacting us, we will get back to you shortly.
+          </div>
+          <!-- Button -->
+          <div class="form-group">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-warning btn-block btn-lg">Send <span class="glyphicon glyphicon-send"></span></button>
+            </div>
+          </div>
         </div>
       </form>
 
   </div>
 </section>
 
-<section>
+<br>
+<br>
+
+<section class="homepage-section">
+  <br>
+  <br>
   <div class="separator">
     <span>
       <a class="section-heading" name="contact-us">&nbsp;</a>
@@ -60,13 +69,13 @@
     <hr>
   </div>
   <div class="row contact-us">
-    <div class="col-md-5 pull pull-left col-sm-padding">
+    <div class="col-md-5 pull pull-left col-xs-padding">
       <p class="lg-text">We are where you are.</p>
-      <address class="lg-text">
-        info@ galileo-insights.com<br>
-        248.555.1212<br>
-        12345 Main St.<br>
-        Detroit, MI 4xxxx
+      <address>
+        <span class="lg-text">info@ galileo-insights.com</span><br>
+        <span class="lg-text">248.555.1212</span><br>
+        <span class="lg-text">12345 Main St.</span><br>
+        <span class="lg-text">Detroit, MI 4xxxx</span>
       </address>
       <p class="md-text">Contact Us</p>
     </div>
